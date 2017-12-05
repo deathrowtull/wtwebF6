@@ -1,0 +1,60 @@
+<div>
+  <!--<div class="grid-x primary" data-sticky data-margin-top="0" data-options="stickTo:top; stickyOn:small;">-->
+  <div class="grid-x primary">
+    <div class="centered cell">
+      <div class="top-bar primary show-for-large-up">
+        <div class="top-bar-left">
+          <ul class="menu">
+            <li class="show-for-large"><a href="{{root}}/"><h1>West Texas A&amp;M University</h1></a></li>
+            <li class="hide-for-large">
+              <button type="button" class="button" data-toggle="offCanvasLeft">
+                <i class="fa fa-navicon"></i>
+              </button>
+            </li>
+          </ul>
+        </div> 
+        <div class="logo-wrapper">
+          <div class="logo large">
+            <a href="/">
+              <img alt="WT spirit Logo" src="./assets/img/WT.png">
+            </a>
+          </div>
+        </div>       
+        <div class="top-bar-right">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li class="show-for-large">
+              <a href="#">Go To</a>
+              <ul class="menu vertical">
+                {{> subnav}} 
+              </ul>
+            </li>
+            <li class="show-for-large"><a href="//bufftransit.wtamu.edu/" target="_blank"><i class="fa fa-bus"></i></a></li>
+            <li>
+              <a href="./az.html" class="show-for-large">
+                <i class="fa fa-sitemap"></i> A-Z
+              </a>   
+            </li>
+            <li><a href="//wtamu.edu/search/"><i class="fa fa-search"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="grid-x grid-margin-x white show-for-large" style="border-bottom: solid 1px #581818">
+    <div class="centered cell">
+      <div class="top-bar">
+        <div class="top-bar-left">
+          <ul class="menu">
+            {{> mainnavleft}}
+          </ul>
+        </div>        
+        <div class="top-bar-right">
+          <ul class="dropdown menu" data-dropdown-menu>
+            {{> mainnavright}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

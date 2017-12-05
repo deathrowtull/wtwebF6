@@ -1,0 +1,50 @@
+{{!-- This is the base layout for your project, and will be used on every page. --}}
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>West Texas A&amp;M University</title>
+    <link rel="stylesheet" href="{{root}}assets/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.6/css/swiper.min.css">
+  </head>
+  <body>
+    <div id="skip"><a href="#maincontent">Skip to Main Content</a></div>   
+    <div data-sticky-container>
+      <div class="off-canvas position-left secondary" id="offCanvasLeft" data-off-canvas style="background-color: #444 !important">
+        <ul class="mobile-ofc vertical menu">
+          <li>
+              <label>WTAMU</label>
+          </li>
+          {{> mainnavleft}}
+          {{> mainnavright}}        
+          <li>
+            <a href="./az.html"><i class="fa fa-sitemap"></i> A-Z</a>   
+          </li>
+          <li>
+            <a href="//bufftransit.wtamu.edu/" target="_blank">
+              <i class="fa fa-bus"></i> Buff Transit
+            </a>
+          </li>
+          <li>
+              <label>Audience</label>
+          </li>  
+          {{> subnav}}       
+        </ul>
+      </div>
+      
+      <div class="off-canvas-content" data-off-canvas-content>        
+        {{> nav}} 
+        <div style="height:20px" class="hide-for-large" id="maincontent"> </div>
+        {{!-- Pages you create in the src/pages/ folder are inserted here when the flattened page is created. --}}
+        {{> body}}
+
+        {{> footer}} 
+      </div>
+    </div>
+    <script src="{{root}}assets/js/app.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.5.2/lazyload.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.6/js/swiper.min.js"></script>
+  </body>
+</html>

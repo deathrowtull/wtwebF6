@@ -128,7 +128,27 @@ $(document).ready(function () {
         if (!results) return null;
         if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }    
+    }  
+
+    //scheduler uses unix time to stamp to display and hide elements on a page
+    //---------------------------------see usage below-------------------------
+    //class="scheduler" style="display:none" starttime="1507642200000" endtime="1507690800000"
+    //-------------------------------------------------------------------------
+    $('.scheduler').each(function( index, value ) {
+        $(this).hide();
+        if((((new Date()).getTime())) > parseInt($(this).attr('starttime')) && parseInt($(this).attr('endtime')) > ((new Date().getTime()))){
+            $(this).show();
+        }
+        if($(this).attr('starttime') == "" && parseInt($(this).attr('endtime')) > ((new Date().getTime()))){
+            $(this).show();
+        }
+        if((((new Date()).getTime())) > parseInt($(this).attr('starttime')) && $(this).attr('endtime') == ""){
+            $(this).show();
+        }
+        if($(this).attr('starttime') == "" && $(this).attr('endtime') == ""){
+            $(this).show();
+        }
+    });  
 
 // //Google Maps Integration Code------------
 //     function initMap() {

@@ -108,8 +108,14 @@
 		color: $white
 	}
 	a:hover > *, a:focus > *, a:active > *{
-		background-color: scale-color($secondary-color, $lightness: -30%) !important;
-		color: $white !important;
+		background-color: scale-color($secondary-color, $lightness: -30%);
+		color: $white !important;		
+	}
+	a:hover .caption, a:focus .caption, a:active .caption{
+		background-color: transparent;
+		&> * {
+			background-color: transparent;
+		}		
 	}
 	.menu{
 		background-color: $secondary-color;
@@ -453,7 +459,7 @@ height:auto;
 			overflow: hidden;
 			white-space: nowrap;
 		}		
-	}	
+	}
 }
 
 .social{

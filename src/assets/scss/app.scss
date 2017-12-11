@@ -57,91 +57,198 @@
 
 //color scss--------------------------
 
-.white {
+.default{
+	.fade{
+		background: rgba(255,255,255,0.80);
+	}
+	.border, .date{
+		text-align: center;
+		padding: 1rem;
+		border: .15rem solid $primary-color;
+	}
 	background-color: $white;
 	> * , a{
-		color: $primary-color !important;
-	}
+		color: $primary-color;
+	}	
 	.menu{
-		//background-color: $primary-color;
-		a:hover, a:focus, a:active{
-			background-color: scale-color($white, $lightness: -10%) !important;
-			color: $black !important;
+		background-color: $white;
+		a:hover, a:focus, a:active{							
+			background-color: scale-color($white, $lightness: -20%);
+			color: $primary-color;
+		}		
+		&.vertical li, .submenu li{
+			border-bottom: 1px solid scale-color($white, $lightness: -20%);
 		}
-		.submenu li{
-			border-bottom: 1px solid scale-color($white, $lightness: -10%) !important;
+		&.is-dropdown-submenu{
+			border: 1px solid scale-color($white, $lightness: -20%);
 		}
-		&.vertical li{
-			border-bottom: 1px solid scale-color($white, $lightness: -10%) !important;
+		label{
+			background-color: scale-color($white, $lightness: -30%);
 		}
-	}
-}
-.primary {
-	background-color: $primary-color;
-	> * , a{
-		color: $white !important;
-	}
-	a:hover > *, a:focus > *, a:active > *{
-		background-color: scale-color($primary-color, $lightness: -30%) !important;
-		color: $white !important;
-	}
-	.menu{
-		background-color: $primary-color;
-		a:hover, a:focus, a:active{
-			background-color: scale-color($primary-color, $lightness: -30%) !important;
-			color: $white !important;
-		}
-		.submenu li{
-			border-bottom: 1px solid scale-color($primary-color, $lightness: -30%);
-		}
-		&.vertical li{
-			border-bottom: 1px solid scale-color($primary-color, $lightness: -30%);
+		&.vertical{
+			ul{
+				li{
+					background-color: scale-color($white, $lightness: -10%);
+					border-top: thin solid scale-color($white, $lightness: -10%);
+					border-bottom: thin solid scale-color($white, $lightness: -30%);
+				}
+			}
 		}
 	}	
-	.card{
-		border: none;
+	.card, .card-divider, .card-section{
+		background-color: $white;			
+	}	
+	a:hover, a:focus, a:active{
+		.border, &.button, & > *{
+			background-color: scale-color($white, $lightness: -20%);
+		   	color: $primary-color;	
+		}
+		.caption{
+			background-color: transparent;
+			&> * {
+				background-color: transparent;
+			}	
+		}			
+	}
+	.swiper-pagination-bullet-active {
+	    background: scale-color($primary-color, $lightness: -40%) !important;
+	}
+	&.social{
+		a:hover, a:focus, a:active{
+			i{
+				color: $white !important;
+				background-color: $primary-color !important;
+			}			
+		}
 	}
 }
-.secondary {
-	background-color: $secondary-color;
-	> * , a{
-		color: $white
+.primary {	
+	.fade{
+		background: rgba(88,24,24,0.90);
 	}
-	a:hover > *, a:focus > *, a:active > *{
-		background-color: scale-color($secondary-color, $lightness: -30%);
-		color: $white !important;		
-	}
-	a:hover .caption, a:focus .caption, a:active .caption{
-		background-color: transparent;
-		&> * {
-			background-color: transparent;
-		}		
-	}
-	.menu{
-		background-color: $secondary-color;
-		a:hover, a:focus, a:active{							
-			background-color: scale-color($secondary-color, $lightness: -20%) !important;
-			color: $white !important;
-		}
-		.submenu li{
-			border-bottom: 1px solid scale-color($secondary-color, $lightness: -20%);
-		}
-		&.vertical li{
-			border-bottom: 1px solid scale-color($secondary-color, $lightness: -20%);
-		}
-	}
-	&.fade{
-		background: rgba(68,68,68,0.80);
-	}
-	.border{
+	.border, .date{
 		text-align: center;
 		padding: 1rem;
 		border: .15rem solid $white;
 	}
+	background-color: $primary-color;
+	> * , a, .dropdown.menu a{
+		color: $white
+	}	
+	.menu{
+		background-color: $primary-color;
+		a:hover, a:focus, a:active{							
+			background-color: scale-color($primary-color, $lightness: -20%);
+			color: $white;
+		}		
+		&.vertical li, .submenu li{
+			border-bottom: 1px solid scale-color($primary-color, $lightness: -20%);
+		}
+		&.is-dropdown-submenu{
+			border: 1px solid scale-color($primary-color, $lightness: -20%);
+		}
+		label{
+			background-color: scale-color($primary-color, $lightness: -30%);
+		}
+		&.vertical{
+			ul{
+				li{
+					background-color: scale-color($primary-color, $lightness: -10%);
+					border-top: thin solid scale-color($primary-color, $lightness: -10%);
+					border-bottom: thin solid scale-color($primary-color, $lightness: -30%);
+				}
+			}
+		}
+	}	
+	.card, .card-divider, .card-section{
+		background-color: $primary-color;			
+	}	
 	a:hover, a:focus, a:active{
-		.border{
+		.border, &.button, & > *{
+			background-color: scale-color($primary-color, $lightness: -20%);
+		   	color: $white;	
+		}
+		.caption{
+			background-color: transparent;
+			&> * {
+				background-color: transparent;
+			}	
+		}			
+	}
+	.swiper-pagination-bullet-active {
+	    background: scale-color($primary-color, $lightness: -40%) !important;
+	}
+	&.social{
+		a:hover, a:focus, a:active{
+			i{
+				color: $primary-color !important;
+				background-color: $white !important;
+			}			
+		}
+	}
+}
+.secondary {
+	.fade{
+		background: rgba(68,68,68,0.80);
+	}
+	.border, .date{
+		text-align: center;
+		padding: 1rem;
+		border: .15rem solid $white;
+	}
+	background-color: $secondary-color;
+	> * , a, .dropdown.menu a{
+		color: $white
+	}	
+	.menu{
+		background-color: $secondary-color;
+		a:hover, a:focus, a:active{							
 			background-color: scale-color($secondary-color, $lightness: -20%);
-		}	
+			color: $white;
+		}		
+		&.vertical li, .submenu li{
+			border-bottom: 1px solid scale-color($secondary-color, $lightness: -20%);
+		}
+		&.is-dropdown-submenu{
+			border: 1px solid scale-color($secondary-color, $lightness: -20%);
+		}
+		label{
+			background-color: scale-color($secondary-color, $lightness: 20%);
+		}
+		&.vertical{
+			ul{
+				li{
+					background-color: scale-color($secondary-color, $lightness: 10%);
+					border-bottom: thin solid scale-color($secondary-color, $lightness: -10%);
+				}
+			}
+		}
+	}	
+	.card, .card-divider, .card-section{
+		background-color: $secondary-color;			
+	}	
+	a:hover, a:focus, a:active{
+		.border, &.button, & > *{
+			background-color: scale-color($secondary-color, $lightness: -20%);
+		   	color: $white;	
+		}
+		.caption{
+			background-color: transparent;
+			&> * {
+				background-color: transparent;
+			}	
+		}			
+	}
+	.swiper-pagination-bullet-active {
+	    background: scale-color($secondary-color, $lightness: -40%) !important;
+	}
+	&.social{
+		a:hover, a:focus, a:active{
+			i{
+				color: $secondary-color !important;
+				background-color: $white !important;
+			}			
+		}
 	}
 }
 
@@ -150,7 +257,8 @@
 body a,
 body a > *
 ,.caption > *,
-.logo{  
+.logo,
+.overlay{  
    -o-transition: all .1s ease;
    -ms-transition: all .1s ease;
    -moz-transition: all .1s ease;
@@ -200,8 +308,11 @@ height:auto;
 	}
 }
 
-.card a{
-	text-decoration: none !important;
+.card{
+	border: none;
+	a{
+		text-decoration: none !important;
+	}
 }
 
 .card-divider{
@@ -217,7 +328,6 @@ height:auto;
 	li{
 		font-weight: bold;
 		label{
-			background-color: $medium-gray;
 			padding-right: $global-padding;
 			padding-left: $global-padding;
 			padding-top: .5rem;
@@ -228,9 +338,7 @@ height:auto;
 		}				
 		ul{
 			margin-left: 0;
-			li{
-				background-color: $medium-gray;
-				border-bottom: thin solid #666;
+			li{				
 				a{	
 					padding-left: .5rem;
 				}
@@ -250,10 +358,7 @@ height:auto;
 				    transform: rotate(90deg);
 				}
 				list-style: none;				
-			}
-			li:first-child{
-				border-top: thin solid $dark-gray;
-			}			
+			}					
 		}
 	}
 }
@@ -276,6 +381,7 @@ height:auto;
     position: absolute;
     top: 0;
     left: 0;  
+    filter: brightness(100%);
 }
 .padding-top{
     padding-top: 1rem;
@@ -288,8 +394,7 @@ height:auto;
 	&.grid-x{
 		padding-top: 3rem;
     	padding-bottom: 2.25rem;
-	}
-    
+	} 
 }
 .small-text-center{
 	text-align: center;
@@ -317,7 +422,6 @@ height:auto;
 		margin-bottom: 0;
 		font-size: 20px;
 		line-height: .5rem;
-		color: #ffffff !important;
 	}
 	.top-bar-right, .top-bar-left{
 		web-kit-flex: none;
@@ -377,12 +481,11 @@ height:auto;
 	}
 	a{
 		text-decoration: none;
-		&:focus, &:hover, &:active{
-			//background-color: $primary-color !important;
-			> *{
-				//		background-color: $primary-color !important;
+		&:hover{
+			.overlay{
+				filter: brightness(80%);
 			}
-		}
+		}		
 	}
 }
 
@@ -430,7 +533,6 @@ height:auto;
 	}
 	.swiper-pagination-bullet-active {
 	    opacity: .9 !important;
-	    background: scale-color($primary-color, $lightness: -30%) !important;
 	}
 	> .swiper-pagination-bullets {
 	    bottom: -6px;	    
@@ -446,9 +548,7 @@ height:auto;
 
 .events{	
 	.date{
-		float: left;
-		padding: 1rem;
-		border: .15rem solid $white;
+		float: left;		
 		width: 8rem;
 		text-align: center;
 		margin-right: 1rem;
@@ -471,13 +571,9 @@ height:auto;
 		padding: 1rem;	
 		width: 4rem;
 	}
-	a{			
-		&:hover i, &:focus i, &:active i{			
-			color: $white;
-			background-color: $primary-color;
-		}
+	.column-block {
+	    margin-bottom: 1rem;
 	}
-	padding-bottom: 1rem !important;
 }
 
 //background scss----------------

@@ -45,10 +45,10 @@
 //@include foundation-tooltip;
 @include foundation-top-bar;
 @include foundation-visibility-classes;
-// @include foundation-float-classes;
+//@include foundation-float-classes;
 //@include foundation-flex-classes;
 
-@include foundation-prototype-classes;
+//@include foundation-prototype-classes;
 
 //@include motion-ui-transitions;
 //@include motion-ui-animations;
@@ -450,7 +450,12 @@ height:auto;
 					top: -20px;
 					margin-left: -111px;	
 				}
-		    }	    
+		    }
+	    	a:focus, a:hover, a:active{
+				img{
+					filter: brightness(80%);
+				}
+			}		    	    
 		}		
 	}
 	.menu{	
@@ -481,7 +486,7 @@ height:auto;
 	}
 	a{
 		text-decoration: none;
-		&:hover{
+		&:focus, &:hover, &:active{
 			.overlay{
 				filter: brightness(80%);
 			}

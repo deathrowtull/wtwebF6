@@ -7,8 +7,9 @@ import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
-
-$(document).foundation();
+$(document).ready(function () {  
+    $(document).foundation();
+});
 
 //checks to see if there are any lazy selectors and loads the script via cdn------------
 //if($('.lazy').length){    

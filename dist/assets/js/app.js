@@ -14488,8 +14488,9 @@ window.$ = _jquery2.default;
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
-
-(0, _jquery2.default)(document).foundation();
+(0, _jquery2.default)(document).ready(function () {
+    (0, _jquery2.default)(document).foundation();
+});
 
 //checks to see if there are any lazy selectors and loads the script via cdn------------
 //if($('.lazy').length){    

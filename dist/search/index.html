@@ -85,7 +85,7 @@
                 <div class="logo-wrapper">
                   <div class="logo large">
                     <a href="../">
-                      <img alt="West Texas A&amp;M University" src="..//assets/img/WT.png"/>
+                      <img alt="West Texas A&amp;M University" src="../assets/img/WT.png"/>
                     </a>
                   </div>
                 </div>       
@@ -248,7 +248,7 @@
           	</div>
           	
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-animate.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-animate.js"></script>
         
         <script type="text/javascript">
         	// <![CDATA[                                                        
@@ -272,6 +272,14 @@
         		s.parentNode.insertBefore(gcse, s);
         	})();
         	// ]]>
+        
+            $(document).ready(function () { 
+                setTimeout(function(){ 
+                    var q = getParameterByName('q');
+                    $('#search_text_box').val(q);
+                }, 3000);
+                
+            });
         </script> 
         
         <script>               
@@ -281,10 +289,10 @@
             });
         
             App.controller('expertSearch', function($scope, $http) {
-               $http.get('/dist/assets/js/experts.js')
-                 .then(function(res) {
-                 $scope.people = res.data;
-                 console.log($scope.people);
+                $http.get('../assets/experts.js')
+                .then(function(res) {
+                $scope.people = res.data;
+                //console.log($scope.people);
                  
                 $scope.data = {
                     model: null,
@@ -359,7 +367,7 @@
                 };
                 (window.angular);
                 
-                 });
+                });
             });
         
             App.controller('directorySearch', function($scope, $http) {
@@ -402,7 +410,7 @@
             <div class="centered cell grid-x">
                 <div class="medium-4 logo cell small-text-center">
                     <a href="http://www.tamus.edu">
-                        <img style="width: auto" alt="The Texas A&M System" src="/dist/../images/3x2m.png" data-src="//www.wtamu.edu/images/MemberTAMUS.png" class="lazy">
+                        <img style="width: auto" alt="The Texas A&M System" src="../assets/img/3x2m.png" data-src="//www.wtamu.edu/images/MemberTAMUS.png" class="lazy">
                     </a>
                 </div>
                 <div class="reg medium-8 cell">                                  

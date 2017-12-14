@@ -14594,21 +14594,33 @@ window.$ = _jquery2.default;
         (0, _jquery2.default)(value).attr('href', (0, _jquery2.default)(value).attr('href') + '?url=' + location.href);
     });
 
-    //parses query strings for parameters
-    /////////////////see example below
-    //var q = getParameterByName('q');  
-    //////////////////////////////////
-    function getParameterByName(name, url) {
-        if (!url) {
-            url = window.location.href;
-        }
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
+    (function ($) {
+
+        var wtfunc;
+
+        wtfunc = {
+            getParameterByName: function getParameterByName(name, url) {
+                //parses query strings for parameters
+                /////////////////see example below
+                //var q = getParameterByName('q');  
+                //////////////////////////////////            
+                if (!url) {
+                    url = window.location.href;
+                }
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            },
+            bodyInfo: function bodyInfo() {
+                alert($('body').attr('id'));
+            }
+        };
+
+        window.wf = wtfunc;
+    })(this.jQuery);
 
     //scheduler uses unix time to stamp to display and hide elements on a page
     //---------------------------------see usage below-------------------------

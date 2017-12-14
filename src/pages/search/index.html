@@ -1,4 +1,4 @@
-<div class="default">
+<div class="default" ng-app="WtDirectory" id="app">
   	<div class="fade grid-x grid-margin-x padding">
     	<div class="centered cell">
       		<h2>Search</h2> 
@@ -11,17 +11,231 @@
 
 	      	<div class="tabs-content" data-tabs-content="example-tabs">
 	  			<div class="tabs-panel is-active" id="panel1">
-	    			<p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+	    			<form action="./" id="searchWeb" method="get">
+                        <div class="search-field">
+                            <input aria-labelledby="search-label" id="search_text_box" name="q" placeholder="Search WT" role="textbox" type="search" style="font-size: 15px;"/>
+                            <!--<input type="submit" value="Search" style="font-size: 15px; width: 10%"/>-->
+                        </div>
+                    </form>
+                    <div class="gcse-searchresults-only" data-linktarget="_parent">&#160;</div>
 	  			</div>
-		  		<div class="tabs-panel" id="panel2">
-		    		<p>Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+	  			
+		  		<div class="tabs-panel" id="panel2" ng-controller="directorySearch">
+		    		<label class="">
+		    		    <form ng-submit="submit()">
+		    		    	<input type="text" ng-model="search" placeholder="Search People" pattern=".{3,}" required title="3 characters are required to search" ng-model-options="{debounce: 500}"/>
+		    		    	<input type="submit" id="submit" value="Submit" />
+		    		    </form>
+		    		</label>
+		    		
+		    	 <!--<ul class="small-block-grid-1 medium-block-grid-2 directory">
+                                        
+					<li class="animation" ng-repeat="person in people" style="padding-left: 0">
+						<h3>{{person.fname}} {{person.lname}}</h3>
+						<div class="caption small-12 medium-12 large-6" style="float: left">
+							<strong>Title:</strong> {{person.title}}<br />
+							<strong>Location:</strong> {{person.building}} {{person.room}}<br />
+							<p class="hide">{{person.expertise}}</p>
+							<a href="tel:{{person.phone}}">{{person.phone}}</a><br />
+							<a href="mailto:{{person.email}}">{{person.email}}</a>
+						</div>
+						<div class="small-12 medium-12 large-6 ">
+							<div class="small-8 small-centered columns">
+								<img src="http://apps.wtamu.edu{{person.imgUrl}}" />
+							</div>
+						</div>
+						<div class="text-right hide">
+							<a href="#" class="button small-12 large-6">View Biography</a>
+						</div>
+					</li>
+                 </ul>	-->
+		    		
 		  		</div>
-		  		<div class="tabs-panel" id="panel3">
-		    		<p>Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+		  		
+		  
+		  		<div class="tabs-panel" id="panel3" ng-controller="expertSearch">
+		    		<select name="repeatSelect" id="repeatSelect" ng-model="search.expertgroup.expertise">
+                        <option value="" disabled selected>Select Expertise</option>
+                        <option ng-repeat="option in data.availableOptions" value="{[{option.name}]}">{[{option.name}]}</option>
+                    </select>
+                    
+                    
+                    
+                   <!--<ul class="small-block-grid-1 medium-block-grid-2 directory">
+                                      
+                        <li class="animation" ng-repeat="person in people | filter:search track by $index  " style="padding-left: 0">
+                            <h3>{{person.designation}} {{person.fname}} {{person.lname}}</h3>
+                            <div class="caption small-12 medium-12 large-6" style="float: left">
+                                <strong>Title:</strong> {{person.title}}<br />
+                                <strong>Location:</strong> {{person.building}} {{person.room}}<br />
+                                <p class="hide">{{person.expertise}}</p>
+                                <a href="tel:{{person.phone}}">{{person.phone}}</a><br />
+                                <a href="mailto:{{person.email}}">{{person.email}}</a>
+                            </div>
+                            <div class="small-12 medium-12 large-6 dimage">
+                                <div class="small-8 small-centered columns">
+                                	<img src="http://cascadetest.wtamu.edu/test/directory/{{person.thumb}}" />
+                                </div>
+                            </div>
+                               <div class="text-right">
+                                    <a href="#" class="button small-12 large-6">View Biography</a>
+                                </div>
+                        </li>
+                    </ul> -->
+                    
 		  		</div>
+		  	
 		  	</div>
     	</div>
   	</div>
-</div>
-<script>
+  	
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-animate.js"></script>
+
+<script type="text/javascript">
+	// <![CDATA[                                                        
+	var imgAltTagsFix = function() {
+		var gscSearch = document.querySelector('input.gsc-search-button');
+		//var gscBranding = document.querySelector('.gcsc-branding');
+		gscSearch.setAttribute('alt', 'Google Custom Search Button');
+		//gscBranding.setAttribute('aria-hidden', 'True');
+	};
+	window.__gcse = {
+		callback: imgAltTagsFix
+	};
+	(function() {
+		var cx = '017207163629162198634:3oziw4igxw8';
+		var gcse = document.createElement('script');
+		gcse.type = 'text/javascript';
+		gcse.async = true;
+		gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+			'//www.google.com/cse/cse.js?cx=' + cx;
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(gcse, s);
+	})();
+	// ]]>
+</script> 
+
+<script>               
+
+    var App = angular.module('WtDirectory', ['ngAnimate']).config(function($interpolateProvider){
+        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    });
+
+    App.controller('expertSearch', function($scope, $http) {
+       $http.get('/dist/assets/js/experts.js')
+         .then(function(res) {
+         $scope.people = res.data;
+         console.log($scope.people);
+         
+        $scope.data = {
+            model: null,
+            availableOptions: [
+                { name: 'Accounting'},
+                { name: 'Advertising and PR' },
+                { name: 'Agriculture' },
+                { name: 'Agricultural Business and Economics' },
+                { name: 'AIDS and HIV' },
+                { name: 'Alternative Energy' },
+                { name: 'Animal Science' },
+                { name: 'Art' },
+                { name: 'Banking' },
+                { name: 'Biology' },
+                { name: 'Business Communication' },
+                { name: 'Campus/Student Life' },
+                { name: 'Chemistry' },
+                { name: 'Child Development and Early Education' },
+                { name: 'Codicology' },
+                { name: 'Communication Disorders' },
+                { name: 'Communication Studies' },
+                { name: 'Criminal Justice' },
+                { name: 'Curriculum Development' },
+                { name: 'Dance' },
+                { name: 'Disaster Planning' },
+                { name: 'Distance Education and Instructional Technology' },
+                { name: 'Diversity Issues/Multiculturalism' },
+                { name: 'Economics' },
+                { name: 'Education' },
+                { name: 'Energy Resources' },
+                { name: 'Engineering and Engineering Technology' },
+                { name: 'English Language' },
+                { name: 'Environmental Science' },
+                { name: 'Finance' },
+                { name: 'Foreign Language/Cultures' },
+                { name: 'Geography' },
+                { name: 'Geology' },
+                { name: 'Health, Nursing and Medical Issues' },
+                { name: 'Higher Education' },
+                { name: 'History' },
+                { name: 'Information Technology' },
+                { name: 'International Business and Trade' },
+                { name: 'Law and Legal Issues' },
+                { name: 'Leadership' },
+                { name: 'Learning Styles/Teaching Methods' },
+                { name: 'Literacy and Reading' },
+                { name: 'Literature' },
+                { name: 'Management' },
+                { name: 'Marketing' },
+                { name: 'Marriage and Family' },
+                { name: 'Mass Communication/Media' },
+                { name: 'Mathematics' },
+                { name: 'Music' },
+                { name: 'Organizational Behavior' },
+                { name: 'Physical Education, Recreation and Leisure' },
+                { name: 'Plant Science' },
+                { name: 'Politics and Government' },
+                { name: 'Pop Culture' },
+                { name: 'Psychology' },
+                { name: 'Religion' },
+                { name: 'Science Education' },
+                { name: 'Sociology/Social Work' },
+                { name: 'Soil Science/Management' },
+                { name: 'Spanish Language' },
+                { name: 'Statistics' },
+                { name: 'Strategic Planning' },
+                { name: 'Terrorism' },
+                { name: 'Theatre' },
+                { name: 'Transportation' },
+                { name: 'Writing' }
+            ]
+        };
+        (window.angular);
+        
+         });
+    });
+
+    App.controller('directorySearch', function($scope, $http) {
+
+        $scope.people = [];
+
+        $scope.list = [];
+        $scope.text = 'hello';
+
+        $scope.submit = function() {
+            
+            if ($scope.search) {
+                
+                var data = $.param({
+                    search: $scope.search,
+                    stype: "all",
+                    xml_output: 1
+                });
+                
+                var config = {
+                    headers : {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                };
+                
+                $http.post('//apps.wtamu.edu/dir/', data, config)
+                .success(function(data, headers, config){
+                    var x2js = new X2JS();
+                    var json = x2js.xml_str2json( data );
+                    $scope.people = json.directory.results.result;
+                    //console.log($scope.people);
+                });
+            }
+        };                
+    });
+            
 </script>

@@ -13,7 +13,7 @@
 @include foundation-typography;
 @include foundation-button;
 @include foundation-forms;
-// @include foundation-range-input;
+//@include foundation-range-input;
 //@include foundation-accordion;
 //@include foundation-accordion-menu;
 //@include foundation-badge;
@@ -264,6 +264,10 @@ body a > *
    -moz-transition: all .1s ease;
    -webkit-transition: all .1s ease;
    transition: all .2s ease;
+}
+
+.input-group-label, .input-group-field, .input-group-button, .input-group-button a, .input-group-button input, .input-group-button button, .input-group-button label {
+    margin-bottom: .5rem;
 }
 
 #skip a {

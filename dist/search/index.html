@@ -178,25 +178,30 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="gcse-searchresults-only" data-linktarget="_parent">&#160;</div>
                             </form>
-                            <div class="gcse-searchresults-only" data-linktarget="_parent">&#160;</div>
+                            
         	  			</div>
         	  			
         		  		<div class="tabs-panel" id="panel2" ng-controller="directorySearch">
+        		  		    
+        		  		    <div>
+        		    		        <input type="radio" ng-model="type" value="staff" checked/>Faculty Staff
+                                    <input type="radio" ng-model="type" value="student" /> Students
+        		    		</div>
+        		    		    
         		    		<label class="">
+        		    		    
+        		    		    
         		    		    <form ng-submit="submit()">		  
-        		    		            
-        		    		        <input type="radio" ng-model="type" value="staff" checked="checked">Faculty Staff<br>
-                                    <input type="radio" ng-model="type" value="student"> Students<br>
-        
-        		    		        
+        		    		    
                                     <input type="text" ng-model="fname" placeholder="First name">
                                     <input type="text" ng-model="lname" placeholder="Last name">
                                     <div class="input-group-button">
                                         <input type="submit" class="button primary" value="Submit">
                                     </div>
-                                    
         		    		    </form>
+        		    		    
         		    		</label>
         		    		
         		    		
@@ -211,8 +216,9 @@
                 							<p class="hide">{[{person.expertise}]}</p>
                 							<a href="tel:">{[{person.phone}]}</a><br />
                 							<a href="mailto:">{[{person.email}]}</a>
-                						</div>
-                                    </div>
+                				    </div>
+                            </div>
+                                    
             						<div class="small-4 cell">
             							<div class="small-8 small-centered">
             								<img src="http://apps.wtamu.edu{[{person.imgUrl}]}" />
@@ -235,7 +241,21 @@
                             
                             
                             
-                           <ul class="small-block-grid-1 medium-block-grid-2 directory">
+                            <div class="grid-x medium-up-2 large-up-3 grid-margin-x grid-margin-y">                                        
+            					<div class="animation cell grid-x" ng-repeat="person in people | filter:search track by $index " style="padding-left: 0">
+            						<div class="small-8 cell">
+                                        <h3>{[{person.fname}]} {[{person.lname}]}, {[{person.designation}]} </h3>
+                						<div class="caption small-12 medium-12 large-6" style="float: left">
+                							<strong>Title:</strong> {[{person.title}]}<br />
+                							<strong>Location:</strong> {[{person.building}]} {[{person.room}]}<br />
+                							<p class="hide">{[{person.expertise}]}</p>
+                							<a href="tel:">{[{person.phone}]}</a><br />
+                							<a href="mailto:">{[{person.email}]}</a>
+                				    </div>
+                            </div>
+                            
+                            
+                         <!--  <ul class="small-block-grid-1 medium-block-grid-2 directory">
                                               
                                 <li class="animation" ng-repeat="person in people | filter:search track by $index  " style="padding-left: 0">
                                     <h3>{[{person.designation}]} {[{person.fname}]} {[{person.lname}]}</h3>
@@ -245,7 +265,10 @@
                                         <p class="hide">{[{person.expertise}]}</p>
                                         <a href="tel:">{[{person.phone}]}</a><br />
                                         <a href="mailto:">{[{person.email}]}</a>
-                                    </div>
+                                    </div>-->
+                                    
+                                    
+                                    
                                     <div class="small-12 medium-12 large-6 dimage">
                                         <div class="small-8 small-centered columns">
                                         	<img src="http://cascadetest.wtamu.edu/test/directory/{[{person.thumb}]}" />

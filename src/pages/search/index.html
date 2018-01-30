@@ -33,7 +33,7 @@
 		    		    
 		    		<form ng-submit="submit()">		  
 	    		        <div class="input-group">
-                            <input type="text" ng-model="search" placeholder="Search">
+                            <input type="text" ng-model="search" placeholder="Search" id="Search_Directory">
                             <div class="input-group-button">
                                 <input type="submit" class="button primary" value="Submit">
                             </div>
@@ -128,7 +128,22 @@
 
     $(document).ready(function () { 
         var q = wf.getParameterByName('q');
-        $('#search_text_box').val(q);       
+        $('#search_text_box').val(q);
+        var t = wf.getParameterByName('t');
+        
+        if(t == "g"){
+            
+        $('#search_text_box').val(q);
+        }
+         if(t == "d"){
+            
+        $('#Search_Directory').val(q);
+        }
+         if(t == "e"){
+            
+        $('#repeatSelect').val(q);
+        }
+        
     });
 
 </script> 
@@ -157,6 +172,7 @@
             $scope.search = expertisepassedfrombutton;
             $('#repeatSelect').hide();
         }
+        
     });
 
     App.controller('directorySearch', function($scope, $http) {

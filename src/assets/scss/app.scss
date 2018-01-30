@@ -67,7 +67,7 @@
 		border: .15rem solid $primary-color;
 	}
 	background-color: $white;
-	> * , a{
+	a{
 		color: $primary-color;
 	}	
 	.menu{
@@ -628,6 +628,35 @@ a[href^="mailto:"]::before {
 
 a[href^="http://maps.google.com/maps?daddr="]::before {
     content: "\f276";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    padding-right: .25rem;
+}
+
+a[href$=".pdf"]::before {
+    content: "\f1c1";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    padding-right: .25rem;
+}
+
+a[href$=".doc"]::before,
+a[href$=".docx"]::before {
+    content: "\f1c2";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    padding-right: .25rem;
+}
+
+a[href$=".xls"]::before,
+a[href$=".xlsx"]::before {
+    content: "\f1c3";
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;

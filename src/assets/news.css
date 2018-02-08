@@ -1,0 +1,13 @@
+figure.image {
+	width : 100%;
+	max-width: 450px;
+}
+figure.image img{
+	width: 100%;
+}
+figure.image  figcaption{
+	width: 100%;
+	text-align: center;
+	font-style: italic;
+	font-size: .8em;
+}

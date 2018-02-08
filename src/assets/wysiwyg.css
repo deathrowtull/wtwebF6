@@ -1,0 +1,58 @@
+a, h1,  h2, h3, h4, h5, h6 {
+    color: #581818; 
+}
+
+a:hover .border, 
+a:hover.button, 
+a:hover > *, 
+a:focus .border, 
+a:focus.button, 
+a:focus > *, 
+a:active .border, 
+a:active.button, 
+a:active > * {
+    background-color: #cbcbcb;
+    color: #581818; 
+}
+
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 1rem 0;
+  font-family: inherit;
+  padding: 0.85em 1em;
+  -webkit-appearance: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  font-size: 0.9rem;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  background-color: transparent;
+  color: #fefefe; 
+}
+
+ .button:hover, .button:focus {
+    background-color: transparent;
+    color: #fefefe; 
+}
+.button.tiny {
+    font-size: 0.6rem; 
+}
+.button.small {
+    font-size: 0.75rem; 
+}
+.button.large {
+    font-size: 1.25rem; 
+}
+.button.expanded {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0; 
+}
+
+img .float-left {
+	float: left;
+}

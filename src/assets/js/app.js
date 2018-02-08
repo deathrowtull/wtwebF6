@@ -3,6 +3,12 @@ import whatInput from 'what-input';
 
 window.$ = $;
 
+if (window.location.href.indexOf("localhost") != -1){
+    console.log(window.location.href);
+}else{
+    if (location.protocol !== "https:") location.protocol = "https:";
+}
+
 import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below

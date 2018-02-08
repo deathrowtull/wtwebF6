@@ -4,13 +4,14 @@
       		<h2>Search</h2> 
 
       		<ul class="tabs" data-tabs data-deep-link="true" id="example-tabs">
-			  	<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Google</a></li>
-			  	<li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Directory</a></li>
-			  	<li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Experts</a></li>
+			  	<li class="tabs-title is-active"><a data-tabs-target="google" href="#google" aria-selected="true">Google</a></li>
+			  	<li class="tabs-title"><a data-tabs-target="directory" href="#directory">Directory</a></li>
+			  	<li class="tabs-title"><a data-tabs-target="experts" href="#experts">Experts</a></li>
 			</ul>
 
 	      	<div class="tabs-content" data-tabs-content="example-tabs">
-	  			<div class="tabs-panel is-active" id="panel1">
+
+	  			<div class="tabs-panel is-active" id="google">
 	    			<form action="./" id="searchWeb" method="get">
                         <div class="search-field">
                             <div class="input-group">
@@ -21,27 +22,24 @@
                             </div>
                         </div>
                         <div class="gcse-searchresults-only" data-linktarget="_parent">&#160;</div>
-                    </form>                    
+                    </form>                                        
 	  			</div>
 	  			
-		  		<div class="tabs-panel" id="panel2" ng-controller="directorySearch">
-		  		    
+		  		<div class="tabs-panel" id="directory" ng-controller="directorySearch">
 		  		    <div>
 	    		        <input type="radio" ng-model="type" value="staff"/> Faculty Staff
                         <input type="radio" ng-model="type" value="student" /> Students
 		    		</div>
 		    		    
-		    		<form ng-submit="submit()">		  
+		    		<form id="directory_search" ng-submit="submit()">		  
 	    		        <div class="input-group">
                             <input type="text" ng-model="search" placeholder="Search" id="Search_Directory">
                             <div class="input-group-button">
                                 <input type="submit" class="button primary" value="Submit">
                             </div>
                         </div>
-	    		    </form>	   		
-		    		
-		    		
-                    <div class="grid-x medium-up-2 large-up-3 grid-margin-x grid-margin-y">                                        
+	    		    </form>	 		
+		    		<div class="grid-x medium-up-2 large-up-3 grid-margin-x grid-margin-y">                                       
     					<div class="animation cell grid-x" ng-repeat="person in people" style="padding-left: 0">
     						<div class="small-8 cell">
                                 <h3>{[{person.fname}]} {[{person.lname}]}</h3>
@@ -52,8 +50,7 @@
         							<div ng-hide="!person.phone"><a href="tel:{{person.phone}}">{[{person.phone}]}</a></div>
         							<div ng-hide="!person.email"><a href="mailto:{{person.email}}">{[{person.email}]}</a></div>
         				        </div>
-                            </div>
-                            
+                            </div>                            
         					<div class="small-4 cell">
         						<div class="small-8 small-centered">
         							<img src="http://apps.wtamu.edu{[{person.imgUrl}]}" />
@@ -63,7 +60,7 @@
                     </div>			    		
 		  		</div>		  		
 		  
-		  		<div class="tabs-panel" id="panel3" ng-controller="expertSearch">
+		  		<div class="tabs-panel" id="experts" ng-controller="expertSearch">
 		    		<select name="repeatSelect" id="repeatSelect" ng-model="search.expertgroup.expertise">
                         <option value="" selected>Select Expertise</option>
                         <option ng-repeat="option in data" value="{[{option.expertise}]}">{[{option.expertise}]}</option>
@@ -103,52 +100,43 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-animate.js"></script>
 <script src="{{root}}assets/x2js-master/xml2json.min.js"></script>
-<script type="text/javascript">
-	// <![CDATA[                                                        
-	var imgAltTagsFix = function() {
-		var gscSearch = document.querySelector('input.gsc-search-button');
-		//var gscBranding = document.querySelector('.gcsc-branding');
-		gscSearch.setAttribute('alt', 'Google Custom Search Button');
-		//gscBranding.setAttribute('aria-hidden', 'True');
-	};
-	window.__gcse = {
-		callback: imgAltTagsFix
-	};
-	(function() {
-		var cx = '017207163629162198634:3oziw4igxw8';
-		var gcse = document.createElement('script');
-		gcse.type = 'text/javascript';
-		gcse.async = true;
-		gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-			'//www.google.com/cse/cse.js?cx=' + cx;
-		var s = document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(gcse, s);
-	})();
-	// ]]>
+<script type="text/javascript">	
 
     $(document).ready(function () { 
         var q = wf.getParameterByName('q');
-        $('#search_text_box').val(q);
-        var t = wf.getParameterByName('t');
         
-        if(t == "g"){
-            
-        $('#search_text_box').val(q);
+        if(window.location.href.indexOf("#google") != -1){            
+            $('#search_text_box').val(q);
+
+            // <![CDATA[                                                        
+            var imgAltTagsFix = function() {
+                var gscSearch = document.querySelector('input.gsc-search-button');
+                gscSearch.setAttribute('alt', 'Google Custom Search Button');
+            };
+            window.__gcse = {
+                callback: imgAltTagsFix
+            };
+            (function() {
+                var cx = '017207163629162198634:3oziw4igxw8';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+            })();
+            // ]]>
         }
-         if(t == "d"){
-            
-        $('#Search_Directory').val(q);
+        if(window.location.href.indexOf("#directory") != -1){                
+            $('#Search_Directory').val(q);
         }
-         if(t == "e"){
-            
-        $('#repeatSelect').val(q);
-        }
-        
+        if(window.location.href.indexOf("#experts") != -1){                 
+            $('#repeatSelect').val(q);
+        }        
     });
 
-</script> 
-
-<script>               
+    //start Angular            
 
     var App = angular.module('WtDirectory', ['ngAnimate']).config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
@@ -168,7 +156,6 @@
         });
 
         $scope.change_expertise=function(expertisepassedfrombutton){
-            //console.log(expertisepassedfrombutton);
             $scope.search = expertisepassedfrombutton;
             $('#repeatSelect').hide();
         }
@@ -181,6 +168,12 @@
         $scope.list = [];
         $scope.text = 'hello';
         $scope.type = 'staff';
+
+        $(document).ready(function () { 
+            if(window.location.href.indexOf("#directory") != -1){                
+                $scope.search = $('#Search_Directory').val();
+            }
+        });
 
         $scope.submit = function() {
             
@@ -211,7 +204,6 @@
                 var x2js = new X2JS();
                 var json = x2js.xml_str2json( data );
                 $scope.people = json.directory.results.result;
-                //console.log($scope.people);
             });
         };                
     });

@@ -4,7 +4,7 @@ import whatInput from 'what-input';
 window.$ = $;
 
 if (window.location.href.indexOf("localhost") != -1){
-    console.log(window.location.href);
+    console.log("Running on local or test instance, https is not enforced: " + window.location.href);
 }else{
     if (location.protocol !== "https:") location.protocol = "https:";
 }
@@ -15,101 +15,144 @@ import Foundation from 'foundation-sites';
 //import './lib/foundation-explicit-pieces';
 $(document).ready(function () {  
     $(document).foundation();
-});
 
-//checks to see if there are any lazy selectors and loads the script via cdn------------
-//if($('.lazy').length){    
+    //checks to see if there are any lazy selectors and loads the script via cdn------------
+    if($('.lazy').length){    
 
-    // (function(w, d){
-    //     var b = d.getElementsByTagName('body')[0];
-    //     var s = d.createElement("script"); s.async = true;
-    //     var v = !("IntersectionObserver" in w) ? "8.5.2" : "10.3.5";
-    //     s.src = "//cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/" + v + "/lazyload.min.js";
-    //     w.lazyLoadOptions = {}; // Your options here. See "recipes" for more information about async.
-    //     b.appendChild(s);
-    // }(window, document));
+        (function(w, d){
+            var b = d.getElementsByTagName('body')[0];
+            var s = d.createElement("script"); s.async = true;
+            var v = !("IntersectionObserver" in w) ? "8.5.2" : "10.3.5";
+            s.src = "//cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/" + v + "/lazyload.min.js";
+            w.lazyLoadOptions = {}; // Your options here. See "recipes" for more information about async.
+            b.appendChild(s);
+        }(window, document));
 
-    $(document).ready(function () {  
-        var myLazyLoad = new LazyLoad({
-            elements_selector: ".lazy"
-        });
-    });
-//}
+        console.log("Lazy class detected:" + $('.lazy').length);
 
-//checks to see if there are any swiper-containers and loads the script via cdn------------
-//if($('.swiper-container').length){
+        // $(document).ready(function () {  
+        //     var myLazyLoad = new LazyLoad({
+        //         elements_selector: ".lazy"
+        //     });
+        // });
+    }else{
+        console.log("No Lazy class detected:" + $('.lazy').length);
+    }
 
-    // (function(w, d){
-    //     var b = d.getElementsByTagName('body')[0];
-    //     var s = d.createElement("script"); s.async = true;
-    //     s.src = "//cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.6/js/swiper.min.js";
-    //     b.appendChild(s);
-    // }(window, document));
+    //checks to see if there are any swiper-containers and loads the script via cdn------------
+    if($('.swiper-container').length){
 
-    $(document).ready(function () {  
+        (function(w, d){
+            var b = d.getElementsByTagName('body')[0];
+            var s = d.createElement("script"); s.async = true;
+            s.src = "//cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.6/js/swiper.min.js";
+            b.appendChild(s);
+        }(window, document));
 
-    //Slider Code------------------
-        $('.swiper-container').each(function (index) {   
+        console.log("Swiper class detected : Swiper script Loaded");
 
-            var phone = $(this).attr('data-phone-slides');  
-            if (!phone) {
-                    phone = 1;
-                } 
+        setTimeout(function(){
 
-            var tablet = $(this).attr('data-tablet-slides');  
-            if (!tablet) {
-                    tablet = 1;
-                }
+        //Slider Code------------------
+            $('.swiper-container').each(function (index) {   
 
-            var desktop = $(this).attr('data-desktop-slides');  
-            if (!desktop) {
-                    desktop = 1;
-                }
+                var phone = $(this).attr('data-phone-slides');  
+                if (!phone) {
+                        phone = 1;
+                    } 
 
-            var time = $(this).attr('data-time');  
-            if (!time) {
-                    time = 1000000;
-                }
-
-            var loop = $(this).attr('data-loop');  
-            if (!loop) {
-                    loop = false;
-                }
-
-            var swiper = new Swiper($(this)[0], {
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                keyboard: {
-                    enabled: true,
-                },
-                autoplay: {
-                    delay: time,
-                    disableOnInteraction: true,
-                },
-                loop: loop,
-                lazy: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                slidesPerView: desktop,
-                spaceBetween: 30,
-                breakpoints: {            
-                    1024: {
-                        slidesPerView: tablet,
-                        spaceBetween: 30,
-                    },
-                    640: {
-                        slidesPerView: phone,
-                        spaceBetween: 30,
+                var tablet = $(this).attr('data-tablet-slides');  
+                if (!tablet) {
+                        tablet = 1;
                     }
-                }
-            }); 
-        });
-    });
-//}
+
+                var desktop = $(this).attr('data-desktop-slides');  
+                if (!desktop) {
+                        desktop = 1;
+                    }
+
+                var time = $(this).attr('data-time');  
+                if (!time) {
+                        time = 1000000;
+                    }
+
+                var loop = $(this).attr('data-loop');  
+                if (!loop) {
+                        loop = false;
+                    }
+
+                var swiper = new Swiper($(this)[0], {
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    keyboard: {
+                        enabled: true,
+                    },
+                    autoplay: {
+                        delay: time,
+                        disableOnInteraction: true,
+                    },
+                    loop: loop,
+                    lazy: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    slidesPerView: desktop,
+                    spaceBetween: 30,
+                    breakpoints: {            
+                        1024: {
+                            slidesPerView: tablet,
+                            spaceBetween: 30,
+                        },
+                        640: {
+                            slidesPerView: phone,
+                            spaceBetween: 30,
+                        }
+                    }
+                }); 
+            });
+            console.log("Swiper Class Init");
+        }, 500);
+    }else{
+        console.log("No swiper class detected:" + $('.swiper-container').length);
+    }
+
+    if($('.youtube').length){
+        ( function() {
+
+        var youtube = document.querySelectorAll( ".youtube" );
+        
+        for (var i = 0; i < youtube.length; i++) {
+            
+            var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
+            
+            var image = new Image();
+                    image.src = source;
+                    image.addEventListener( "load", function() {
+                        youtube[ i ].appendChild( image );
+                    }( i ) );
+            
+                    youtube[i].addEventListener( "click", function() {
+
+                        var iframe = document.createElement( "iframe" );
+
+                                iframe.setAttribute( "frameborder", "0" );
+                                iframe.setAttribute( "allowfullscreen", "" );
+                                iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
+
+                                this.innerHTML = "";
+                                this.appendChild( iframe );
+                    } );    
+                };                
+            } 
+        )();
+        console.log("youtube class detected : Swiper script Loaded");
+    }else{
+        console.log("No youtube class detected:" + $('.youtube').length);
+    }
+});
 
 //generic functions that do not need to be lazy loaded-----------------------------
 $(document).ready(function () {
@@ -251,4 +294,3 @@ $(document).ready(function () {
     // }
     
 });
-

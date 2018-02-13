@@ -200,6 +200,9 @@
 		border: .15rem solid $white;
 	}
 	background-color: $secondary-color;
+	a, h1, h2, h3, h4, h5, h6{
+		color: $white;
+	}	
 	> * , a, .dropdown.menu a{
 		color: $white
 	}	
@@ -290,6 +293,7 @@ height:auto;
 
 .float-left{
 	float: left;
+	margin-right: 1rem
 }
 
 .grid-container {
@@ -424,9 +428,18 @@ height:auto;
 .text-decoration-none{
 	text-decoration: none;
 }
-.small{
-	font-size: 80%;
+
+.wtamu{
+	font-family: Georgia;
+	text-transform: uppercase;
+	color: $primary-color;
 }
+
+h1.smaller{font-size: 1.5rem}
+h2.smaller{font-size: 1.4rem}
+h3.smaller{font-size: 1.3rem}
+*.smaller{font-size: .8rem}
+
 .relative{
 	position: relative;
 }
@@ -439,6 +452,11 @@ height:auto;
 .padding-top{
     padding-top: 1rem;
 }
+
+.uppercase{
+	text-transform: uppercase
+}
+
 .padding-bottom{
     padding-bottom: 2rem !important;
 }
@@ -637,6 +655,9 @@ height:auto;
 	.column-block {
 	    margin-bottom: 1rem;
 	}
+	&.contact{
+		background-color: $light-gray
+	}
 }
 
 //background scss----------------
@@ -666,6 +687,23 @@ a[href^="tel:"]::before {
     padding-right: .25rem;
 }
 
+a[href^="fax:"]::before {
+    content: "\f1ac";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    padding-right: .25rem;
+    color: $dark-gray;    
+}
+a[href^="fax:"]{
+	color: $dark-gray !important;
+	&:hover, &:focus{
+		cursor: default;
+		text-decoration: none;
+	}
+}
+
 a[href^="mailto:"]::before {
     content: "\f003";
     font-family: FontAwesome;
@@ -682,6 +720,18 @@ a[href^="http://maps.google.com/maps?daddr="]::before {
     font-weight: normal;
     text-decoration: inherit;
     padding-right: .25rem;
+}
+
+.map{
+	&.small{
+		height:170px;
+	}
+	&.medium{
+		height:250px
+	}
+	&.large{
+		height:350px
+	}
 }
 
 a[href$=".pdf"]::before {

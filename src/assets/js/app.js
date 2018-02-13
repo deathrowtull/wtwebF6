@@ -122,21 +122,22 @@ $(document).ready(function () {
     if($('.youtube').length){
         ( function() {
 
-        var youtube = document.querySelectorAll( ".youtube" );
-        
-        for (var i = 0; i < youtube.length; i++) {
+            var youtube = document.querySelectorAll( ".youtube" );
             
-            var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
-            
-            var image = new Image();
-                    image.src = source;
-                    image.addEventListener( "load", function() {
-                        youtube[ i ].appendChild( image );
-                    }( i ) );
-            
-                    youtube[i].addEventListener( "click", function() {
+            for (var i = 0; i < youtube.length; i++) {
+                
+                var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
+                
+                var image = new Image();
+                        image.src = source;
+                        image.alt = youtube[i].dataset.alt
+                        image.addEventListener( "load", function() {
+                            youtube[ i ].appendChild( image );
+                        }( i ) );
+                
+                        youtube[i].addEventListener( "click", function() {
 
-                        var iframe = document.createElement( "iframe" );
+                            var iframe = document.createElement( "iframe" );
 
                                 iframe.setAttribute( "frameborder", "0" );
                                 iframe.setAttribute( "allowfullscreen", "" );
@@ -144,15 +145,85 @@ $(document).ready(function () {
 
                                 this.innerHTML = "";
                                 this.appendChild( iframe );
-                    } );    
-                };                
-            } 
-        )();
-        console.log("youtube class detected : Swiper script Loaded");
+                        } );    
+                    };                
+                } 
+            )
+        ();
+        console.log("Youtube class detected : Swiper script Loaded");
     }else{
-        console.log("No youtube class detected:" + $('.youtube').length);
+        console.log("No Youtube class detected:" + $('.youtube').length);
     }
+
+    if($('.map').length){
+        // //Google Maps Integration Code------------
+
+        function initMap() {            
+            $('.map').each(function (index, Element) {
+                var location = $(Element).attr("data-location").split(",");
+                var zoom = $(Element).attr("data-zoom");
+                var name = $(Element).attr("data-name");
+
+                if (location.length != 2) {
+                    $(this).display = "none";
+                    return;
+                }
+
+                if (!zoom) {
+                    zoom = 17;
+                }
+
+                if (!name) {
+                    name = " ";
+                }
+
+                var latlng = new google.maps.LatLng(parseFloat(location[0]), parseFloat(location[1]));
+                var myOptions = {
+                    zoom: parseFloat(zoom),
+                    center: latlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    disableDefaultUI: false,
+                    mapTypeControl: true,
+                    zoomControl: true,
+                    zoomControlOptions: {
+                        style: google.maps.ZoomControlStyle.SMALL
+                    }
+                };
+                var map = new google.maps.Map(Element, myOptions);
+
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    label: {
+                        color: '#111',
+                        fontWeight: 'bold',
+                        text: name,
+                    }
+                });
+            });
+        }
+
+        setTimeout(function(){
+
+            (function(w, d){
+                var b = d.getElementsByTagName('body')[0];
+                var s = d.createElement("script"); 
+                s.async = true;
+                s.defer = true;
+                s.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyBwjWH27OBMiZaiAr9G7cM032Rj13x26_0&callback=initMap";
+                b.appendChild(s);
+            }(window, document));
+        }, 1000);
+
+        
+        console.log("Map class detected : Map script Loaded");
+    }else{
+        console.log("No Map class detected:" + $('.map').length);
+    }    
 });
+
+
 
 //generic functions that do not need to be lazy loaded-----------------------------
 $(document).ready(function () {
@@ -163,6 +234,8 @@ $(document).ready(function () {
             $(value).attr('href', $(value).attr('href') + '?url=' + location.href);
         }
     );   
+
+    $('a[href^="fax:"]').click(false);
 
     (function($) {
     

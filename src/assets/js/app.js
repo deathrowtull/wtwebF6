@@ -29,12 +29,9 @@ $(document).ready(function () {
         }(window, document));
 
         console.log("Lazy class detected:" + $('.lazy').length);
+        //script automatically looks for data-source tags and replaces images there is no need to call the script
+        //special option can be placed in the async code above
 
-        // $(document).ready(function () {  
-        //     var myLazyLoad = new LazyLoad({
-        //         elements_selector: ".lazy"
-        //     });
-        // });
     }else{
         console.log("No Lazy class detected:" + $('.lazy').length);
     }
@@ -156,66 +153,12 @@ $(document).ready(function () {
     }
 
     if($('.map').length){
-        // //Google Maps Integration Code------------
-
-        function initMap() {            
-            $('.map').each(function (index, Element) {
-                var location = $(Element).attr("data-location").split(",");
-                var zoom = $(Element).attr("data-zoom");
-                var name = $(Element).attr("data-name");
-
-                if (location.length != 2) {
-                    $(this).display = "none";
-                    return;
-                }
-
-                if (!zoom) {
-                    zoom = 17;
-                }
-
-                if (!name) {
-                    name = " ";
-                }
-
-                var latlng = new google.maps.LatLng(parseFloat(location[0]), parseFloat(location[1]));
-                var myOptions = {
-                    zoom: parseFloat(zoom),
-                    center: latlng,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    disableDefaultUI: false,
-                    mapTypeControl: true,
-                    zoomControl: true,
-                    zoomControlOptions: {
-                        style: google.maps.ZoomControlStyle.SMALL
-                    }
-                };
-                var map = new google.maps.Map(Element, myOptions);
-
-                var marker = new google.maps.Marker({
-                    position: latlng,
-                    map: map,
-                    animation: google.maps.Animation.DROP,
-                    label: {
-                        color: '#111',
-                        fontWeight: 'bold',
-                        text: name,
-                    }
-                });
-            });
-        }
+        //Google Maps Integration Code------------
+        //Google initMap Code has to live in the Footer        
 
         setTimeout(function(){
-
-            (function(w, d){
-                var b = d.getElementsByTagName('body')[0];
-                var s = d.createElement("script"); 
-                s.async = true;
-                s.defer = true;
-                s.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyBwjWH27OBMiZaiAr9G7cM032Rj13x26_0&callback=initMap";
-                b.appendChild(s);
-            }(window, document));
+            $('body').append('<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwjWH27OBMiZaiAr9G7cM032Rj13x26_0&callback=initMap" async defer></script>')        
         }, 1000);
-
         
         console.log("Map class detected : Map script Loaded");
     }else{
@@ -286,55 +229,8 @@ $(document).ready(function () {
         }
     });  
 
-// //Google Maps Integration Code------------
-//     function initMap() {
-        
-//         $('.map').each(function (index, Element) {
-//             var location = $(Element).attr("data-location").split(",");
-//             var zoom = $(Element).attr("data-zoom");
-//             var name = $(Element).attr("data-name");
 
-//             if (location.length != 2) {
-//                 $(this).display = "none";
-//                 return;
-//             }
-
-//             if (!zoom) {
-//                 zoom = 17;
-//             }
-
-//             if (!name) {
-//                 name = " ";
-//             }
-
-//             var latlng = new google.maps.LatLng(parseFloat(location[0]), parseFloat(location[1]));
-//             var myOptions = {
-//                 zoom: parseFloat(zoom),
-//                 center: latlng,
-//                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-//                 disableDefaultUI: false,
-//                 mapTypeControl: true,
-//                 zoomControl: true,
-//                 zoomControlOptions: {
-//                     style: google.maps.ZoomControlStyle.SMALL
-//                 }
-//             };
-//             var map = new google.maps.Map(Element, myOptions);
-
-//             var marker = new google.maps.Marker({
-//                 position: latlng,
-//                 map: map,
-//                 animation: google.maps.Animation.DROP,
-//                 label: {
-//                     color: '#111',
-//                     fontWeight: 'bold',
-//                     text: name,
-//                 }
-//             });
-//         });
-//     }
-
-//Header code Not Currently Necessary------------
+    //Header code Not Currently in production-----------
     // var shrinkHeader = 10;
     // $(window).scroll(function(e) {        
     //     var scroll = getScrollOffsets();        

@@ -389,7 +389,7 @@ height:auto;
 			padding-left: $global-padding;
 			padding-top: .5rem;
 			padding-bottom: .5rem;
-			color: $light-gray;
+			color: $white;
 			text-transform: uppercase;
 			font-weight: bold;
 		}				
@@ -435,10 +435,10 @@ height:auto;
 	color: $primary-color;
 }
 
-h1.smaller{font-size: 1.5rem}
-h2.smaller{font-size: 1.4rem}
-h3.smaller{font-size: 1.3rem}
-*.smaller{font-size: .8rem}
+h1.smaller{font-size: 1.4rem}
+h2.smaller{font-size: 1.2rem}
+h3.smaller{font-size: 1.2rem}
+*.smaller{font-size: .9rem}
 
 .relative{
 	position: relative;
@@ -523,7 +523,7 @@ h3.smaller{font-size: 1.3rem}
 				}
 		    }
 	    	a:focus, a:hover, a:active{
-				img{
+				imgtheresisabuginsafariandchrome{
 					filter: brightness(80%);
 				}
 			}		    	    
@@ -656,7 +656,7 @@ h3.smaller{font-size: 1.3rem}
 	    margin-bottom: 1rem;
 	}
 	&.contact{
-		background-color: $light-gray
+		border-bottom: 1px solid $white;		
 	}
 }
 
@@ -694,10 +694,9 @@ a[href^="fax:"]::before {
     font-weight: normal;
     text-decoration: inherit;
     padding-right: .25rem;
-    color: $dark-gray;    
+    color: $light-gray;    
 }
 a[href^="fax:"]{
-	color: $dark-gray !important;
 	&:hover, &:focus{
 		cursor: default;
 		text-decoration: none;
@@ -724,7 +723,7 @@ a[href^="http://maps.google.com/maps?daddr="]::before {
 
 .map{
 	&.small{
-		height:170px;
+		height:300px;
 	}
 	&.medium{
 		height:250px

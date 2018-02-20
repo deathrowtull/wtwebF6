@@ -157,7 +157,21 @@ $(document).ready(function () {
         //Google initMap Code has to live in the Footer        
 
         setTimeout(function(){
-            $('body').append('<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwjWH27OBMiZaiAr9G7cM032Rj13x26_0&callback=initMap" async defer></script>')        
+            $('body').append('<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwjWH27OBMiZaiAr9G7cM032Rj13x26_0&callback=initMap" async defer></script>') 
+            setTimeout(function(){             
+                //SHIM for googlemaps------------
+                $('.map iframe').attr('title','Google Map');
+                $('.map area').attr('alt','point');
+                $('.map img').attr('alt','Google Maps');
+                // $('.map span[role|="checkbox"]').removeAttr('role');
+                // $('.map span[role|="checkbox"]').removeAttr('role');
+                // $.each(
+                //     $('.map span[role|="checkbox"]'), function(index, value) {
+                //         console.log('span[role|="checkbox"] found and is being removed to maintain accessability');
+                //         $(this).remove();
+                //     }
+                // ); 
+            }, 1000);       
         }, 1000);
         
         console.log("Map class detected : Map script Loaded");
@@ -187,9 +201,6 @@ $(document).ready(function () {
         $('iframe').removeAttr('height');
         $('iframe').removeAttr('scrolling');
         $('html.firefox').attr('lang','en');
-
-        //SHIM for googlemaps------------
-        $('map area').attr('alt','point');
     }, 1500);
 
     //SHIM for fax numbers, makes the number unclickable, 

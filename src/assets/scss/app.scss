@@ -115,7 +115,7 @@
 	}
 	&.social{
 		a:hover, a:focus, a:active{
-			i{
+			span.fa{
 				color: $white !important;
 				background-color: $primary-color !important;
 			}			
@@ -183,7 +183,7 @@
 	}
 	&.social{
 		a:hover, a:focus, a:active{
-			i{
+			span.fa{
 				color: $primary-color !important;
 				background-color: $white !important;
 			}			
@@ -250,7 +250,7 @@
 	}
 	&.social{
 		a:hover, a:focus, a:active{
-			i{
+			span.fa{
 				color: $secondary-color !important;
 				background-color: $white !important;
 			}			
@@ -431,7 +431,6 @@ height:auto;
 .wtamu{
 	font-family: Georgia;
 	text-transform: uppercase;
-	color: $primary-color;
 }
 
 h1.smaller{font-size: 1.4rem}
@@ -646,7 +645,7 @@ h3.smaller{font-size: 1.2rem}
 }
 
 .social{
-	i{
+	span.fa{
 		font-size: 2rem;	
 		padding: 1rem;	
 		width: 4rem;

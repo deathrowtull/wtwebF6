@@ -134,9 +134,9 @@
 	background-color: $primary-color;
 	a, h1, h2, h3, h4, h5, h6{
 		color: $white;
-	}	
-	> * , a, .dropdown.menu a{
-		color: $white
+	}		
+	a, .dropdown.menu a{
+		color: $white;
 	}	
 	.menu{
 		background-color: $primary-color;

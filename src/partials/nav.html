@@ -1,4 +1,4 @@
-<div>
+<div role="navigation" aria-label="Main navigation">
   <!--<div class="grid-x primary" data-sticky data-margin-top="0" data-options="stickTo:top; stickyOn:small;">-->
   <div class="grid-x primary">
     <div class="centered cell">
@@ -7,9 +7,9 @@
           <ul class="menu">
             <li class="show-for-large"><a href="{{root}}"><h1>West Texas A&amp;M University</h1></a></li>
             <li class="hide-for-large">
-              <button type="button" class="button" aria-label="navigation menu" data-toggle="offCanvasLeft">
-                <i aria-hidden="true" class="fa fa-navicon"></i>
-              </button>
+              <a data-toggle="offCanvasLeft">
+                <i aria-hidden="true" class="fa fa-navicon"><span class="hide">Main Navigation</span></i>
+              </a>
             </li>
           </ul>
         </div> 
@@ -23,13 +23,13 @@
         <div class="top-bar-right">
           <ul class="dropdown menu" data-dropdown-menu="data-dropdown-menu">
             <li class="show-for-large">
-              <a href="#" aria-label="Audience Menu">Go To</a>
+              <a href="#">Go To</a>
               <ul class="menu vertical">
                 {{> subnav}} 
               </ul>
             </li>
             <li class="show-for-large">
-              <a href="#" aria-label="Maps Menu"><i aria-hidden="true" class="fa fa-map"></i></a>
+              <a href="#" aria-label="Maps Menu"><i aria-hidden="true" class="fa fa-map"><span class="hide">Maps Menu</span></i></a>
               <ul class="menu vertical">
                 <li>
                   <a href="//bufftransit.wtamu.edu/" target="_blank">
@@ -38,7 +38,7 @@
                 </li>
                 <li>
                   <a href="//map.wtamu.edu/map/?id=458#!ct/4072,18322?ce/4072" target="_blank">
-                    <i aria-hidden class="fa fa-map-pin"></i> Campus Map
+                    <i aria-hidden="true" class="fa fa-map-pin"></i> Campus Map
                   </a>
                 </li>
               </ul>
@@ -48,7 +48,7 @@
                 <i aria-hidden="true" class="fa fa-sitemap"></i> A-Z
               </a>   
             </li>
-            <li><a href="//wtamu.edu/search/" aria-label="Search"><i aria-hidden="true" class="fa fa-search"></i></a></li>
+            <li><a href="//wtamu.edu/search/" aria-label="search"><i aria-hidden="true" class="fa fa-search"><span class="hide">Search</span></i></a></li>
           </ul>
         </div>
       </div>

@@ -147,7 +147,7 @@ $(document).ready(function () {
                 } 
             )
         ();
-        console.log("Youtube class detected : Swiper script Loaded");
+        console.log("Youtube class detected : youtube script Loaded");
     }else{
         console.log("No Youtube class detected:" + $('.youtube').length);
     }
@@ -178,8 +178,25 @@ $(document).ready(function () {
         }
     );   
 
+    //Delayed accessability Fixes------------
+    setTimeout(function(){
+        //SHIM for wufoo forms (iframe accessability)------------
+        $('.wufoo-form-container').attr('title','wufoo form');
+        $('iframe').removeAttr('frameborder');
+        $('.wufoo-form-container').css('height', $('.wufoo-form-container').attr('height'));
+        $('iframe').removeAttr('height');
+        $('iframe').removeAttr('scrolling');
+        $('html.firefox').attr('lang','en');
+
+        //SHIM for googlemaps------------
+        $('map area').attr('alt','point');
+    }, 1500);
+
+    //SHIM for fax numbers, makes the number unclickable, 
+    //may be useable in the future as a link
     $('a[href^="fax:"]').click(false);
 
+    //SHIM gets query string elements
     (function($) {
     
         var wtfunc;
@@ -227,39 +244,5 @@ $(document).ready(function () {
         if($(this).attr('starttime') == "" && $(this).attr('endtime') == ""){
             $(this).show();
         }
-    });  
-
-
-    //Header code Not Currently in production-----------
-    // var shrinkHeader = 10;
-    // $(window).scroll(function(e) {        
-    //     var scroll = getScrollOffsets();        
-    //     if ( scroll >= shrinkHeader ) {
-    //         $('.logo-wrapper .logo').removeClass('large');
-    //     }
-    //     else {
-    //         $('.logo-wrapper .logo').addClass('large');
-    //     }        
-    // });
-
-    // function getCurrentScroll() {
-    //     return window.pageYOffset;
-    // }
-
-    // // Return the current scrollbar offsets as the x and y properties of an object
-    // function getScrollOffsets() {
-    //     // This works for all browsers except IE versions 8 and before
-    //     if ( window.pageXOffset != null ) {
-    //         return window.pageYOffset;            
-    //     }
-    //     // For browsers in Standards mode
-    //     var doc = window.document;
-    //     if ( document.compatMode === "CSS1Compat" ) {
-
-    //         return doc.documentElement.scrollTop;
-    //     }
-    //     // For browsers in Quirks mode
-    //     return doc.body.scrollTop;        
-    // }
-    
+    });      
 });

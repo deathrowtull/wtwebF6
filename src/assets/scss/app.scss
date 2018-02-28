@@ -590,6 +590,10 @@ h3.smaller{font-size: 1.2rem}
 	.swiper-button-disabled{
 	    display: none;
 	}
+	&:hover .swiper-button-disabled{
+		display: block;
+	    opacity: .2;
+	}
 	.swiper-button-next:before, .swiper-button-prev:before{
 	    background-image: none !important;
 	    color: $white;

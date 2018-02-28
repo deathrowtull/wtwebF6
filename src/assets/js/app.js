@@ -3,7 +3,7 @@ import whatInput from 'what-input';
 
 window.$ = $;
 
-if (window.location.href.indexOf("localhost") != -1){
+if (window.location.href.indexOf("localhost") != -1 || window.location.href.indexOf("cascade") != -1){
     console.log("Running on local or test instance, https is not enforced: " + window.location.href);
 }else{
     if (location.protocol !== "https:") location.protocol = "https:";
@@ -111,7 +111,7 @@ $(document).ready(function () {
                 }); 
             });
             console.log("Swiper Class Init");
-        }, 500);
+        }, 800);
     }else{
         console.log("No swiper class detected:" + $('.swiper-container').length);
     }
@@ -177,7 +177,53 @@ $(document).ready(function () {
         console.log("Map class detected : Map script Loaded");
     }else{
         console.log("No Map class detected:" + $('.map').length);
-    }    
+    }  
+
+    //temp fix for using the news rss feed and parsing out the first img and its alt text from the article description------
+    //will be removed when the press system is in place.
+    if($('.news-item').length){
+        //news cleanup code ------------    
+        var regimg = /src="[A-Za-z0-9 '%()/$._-]*(.png"|.jpg")/g;    
+        var regalt = /alt="[A-Za-z0-9 $._-]*"/g;
+
+        setTimeout(function(){
+            $.each(
+                $('.news-item'), function(index, value) {
+                    //$(value).html('href', $(value).attr('href') + '?url=' + location.href);
+                    var str = $(value).find('.description').html();
+                    console.log()
+                    var patt = /src=/;
+                    if(patt.test(str)){
+                        var imgresult = str.match(regimg);
+                        var imgpath = imgresult[0];                        
+                        imgpath = imgpath.replace('src=','');
+                        imgpath = imgpath.replace('"','');
+                        imgpath = imgpath.replace('"','');
+                        imgpath = imgpath.replace('\'','\\\'');
+
+                        var altresult = str.match(regalt);
+                        var alttext = altresult[0];
+                        alttext = alttext.replace('alt=','');
+                        alttext = alttext.replace('"','');
+                        alttext = alttext.replace('"','');
+                        alttext = alttext.replace('\'','\\\'');
+
+                        $(value).find('img').css('background','url("//www.wtamu.edu' + imgpath + '")');
+                        $(value).find('img').css('background-repeat','no-repeat');
+                        $(value).find('img').css('background-position','center');
+                        $(value).find('img').css('background-size','contain');
+                        $(value).find('img').css('background-color','#4f1616');
+                        $(value).find('img').attr('src','/assets/img/3x2t.png');
+                        $(value).find('img').attr('alt',alttext);
+                    }
+                }
+            );                   
+        }, 1000);
+        
+        console.log("news-item class detected : news items script Loaded");
+    }else{
+        console.log("news-item class not detected:" + $('.news-item').length);
+    }   
 });
 
 

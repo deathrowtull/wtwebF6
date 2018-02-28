@@ -209,11 +209,11 @@ $(document).ready(function () {
                         alttext = alttext.replace('\'','\\\'');
 
                         $(value).find('img').css('background','url("//www.wtamu.edu' + imgpath + '")');
-                        $(value).find('img').css('background-repeat','no-repeat');
-                        $(value).find('img').css('background-position','center');
-                        $(value).find('img').css('background-size','contain');
-                        $(value).find('img').css('background-color','#4f1616');
-                        $(value).find('img').attr('src','/assets/img/3x2t.png');
+                        // $(value).find('img').css('background-repeat','no-repeat');
+                        // $(value).find('img').css('background-position','center');
+                        // $(value).find('img').css('background-size','contain');
+                        // $(value).find('img').css('background-color','#4f1616');
+                        //$(value).find('img').attr('src','/assets/img/3x2t.png');
                         $(value).find('img').attr('alt',alttext);
                     }
                 }

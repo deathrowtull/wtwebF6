@@ -662,17 +662,29 @@ h3.smaller{font-size: 1.2rem}
 	}
 }
 
+.news{
+	.swiper-container{
+		img{
+			background-position: center !important;
+			background-repeat: no-repeat !important;
+			background-size: contain !important;
+			background-color: scale-color($primary-color, $lightness: -10%) !important;
+			background-image: url("../img/base/buffalo.png");
+		}
+	}
+}
+
 //background scss----------------
 
 .back-old {
-    background-image: url("../img/back-old.jpg");
+    background-image: url("../img/base/back-old.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;    
 }
 
 .back-mall {
-    background-image: url("../img/back-mall.jpg");
+    background-image: url("../img/base/back-mall.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;    

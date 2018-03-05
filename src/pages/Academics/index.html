@@ -88,10 +88,11 @@
             <div class="medium-12 large-4 cell">
                 <h2 class="smaller uppercase show-for-large"><strong>Connect</strong></h2>     
                 <div class="small-12 show-for-large">
-                    <form action="http://my.spectate.com/contact-academics-west-texas-am-university-form">
-                        <input aria-label="please enter your email" name="email" placeholder="Email" type="email" required="true">
-                        <textarea aria-label="Message" placeholder="Message" name="message" type="textarea"  required="true" style="height: 130px"></textarea>
-                        <input type="submit" class="button secondary" value="Submit" style="background-color: #333">      
+                    <form id="contact-form" action="http://my.spectate.com/contact-academics-west-texas-am-university-form" target="_blank">
+                        <input aria-label="please enter your email" id="contact-email" name="email" placeholder="Email" type="email" required="true">
+                        <textarea aria-label="Message" placeholder="Message" id="contact-message" name="message" type="textarea"  required="true" style="height: 130px"></textarea>
+                        <input type="submit" class="button secondary submit" value="Submit" style="background-color: #333"> 
+                        <p class="message hide">Thank you for your message. Someone will contact you shortly if a response or more information is needed.</p>     
                     </form>              
                 </div> 
                 <div class="small-12">           

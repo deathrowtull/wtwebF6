@@ -223,7 +223,21 @@ $(document).ready(function () {
         console.log("news-item class detected : news items script Loaded");
     }else{
         console.log("news-item class not detected:" + $('.news-item').length);
-    }   
+    }  
+
+    //contact form handling 
+    //native foundation html is being used to post to spectact contact forms.
+    if($('#contact-form').length){
+        $(this).find('.message').addClass('hide');
+        $('#contact-form').submit(function(event) {          
+            $(this).find('.message').removeClass('hide');
+            $(this).find('.submit').addClass('hide');
+            $(this).find('.submit').addClass('hide');
+        }); 
+        console.log("contact-form detected : contact-form items script Loaded");
+    }else{
+        console.log("contact-form not detected:" + $('.contact-form').length);
+    }  
 });
 
 

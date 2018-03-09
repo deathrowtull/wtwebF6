@@ -132,10 +132,7 @@
 		border: .15rem solid $white;
 	}
 	background-color: $primary-color;
-	a, h1, h2, h3, h4, h5, h6{
-		color: $white;
-	}		
-	a, .dropdown.menu a{
+	a, h1, h2, h3, h4, h5, h6, > * , .dropdown.menu a{
 		color: $white;
 	}	
 	.menu{
@@ -200,10 +197,7 @@
 		border: .15rem solid $white;
 	}
 	background-color: $secondary-color;
-	a, h1, h2, h3, h4, h5, h6{
-		color: $white;
-	}	
-	> * , a, .dropdown.menu a{
+	a, h1, h2, h3, h4, h5, h6, > * , .dropdown.menu a{
 		color: $white
 	}	
 	.menu{

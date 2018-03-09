@@ -30,10 +30,10 @@ a:active > * {
   text-align: center;
   cursor: pointer;
   background-color: transparent;
-  color: #fefefe; 
+  color: #000; 
 }
 
- .button:hover, .button:focus {
+.button:hover, .button:focus {
     background-color: transparent;
     color: #fefefe; 
 }
@@ -51,8 +51,4 @@ a:active > * {
     width: 100%;
     margin-right: 0;
     margin-left: 0; 
-}
-
-img .float-left {
-	float: left;
 }

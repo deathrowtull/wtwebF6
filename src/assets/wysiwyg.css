@@ -15,18 +15,12 @@ a:active > * {
     color: #581818; 
 }
 
-.fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: 14px;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 .fa > span{
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+.hide {
+   display: none !important;
 }
 
 .button {

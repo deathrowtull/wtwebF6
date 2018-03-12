@@ -290,6 +290,10 @@ height:auto;
 	margin-right: 1rem
 }
 
+.fa > span{
+	font-family: $body-font-family;
+}
+
 .grid-container {
 	max-width: 100%;
 }

@@ -15,6 +15,20 @@ a:active > * {
     color: #581818; 
 }
 
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 14px;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa > span{
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
 .button {
   display: inline-block;
   vertical-align: middle;
@@ -51,4 +65,18 @@ a:active > * {
     width: 100%;
     margin-right: 0;
     margin-left: 0; 
+}
+button.primary{
+  color: #fefefe;
+  background-color: #581818;
+}
+
+button.secondary{
+  color: #fefefe;
+  background-color: #666;
+}
+button.border{
+    text-align: center;
+    padding: 1rem;
+    border: .15rem solid #581818;
 }

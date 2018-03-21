@@ -144,7 +144,7 @@
 	}
 	background-color: $primary-color;
 	a, h1, h2, h3, h4, h5, h6, > * , .dropdown.menu a{
-		color: $white;
+		color: $white !important;
 	}	
 	.menu{
 		background-color: $primary-color;
@@ -207,7 +207,7 @@
 	}
 	background-color: $secondary-color;
 	a, h1, h2, h3, h4, h5, h6, > * , .dropdown.menu a{
-		color: $white
+		color: $white !important;
 	}	
 	.menu{
 		background-color: $secondary-color;

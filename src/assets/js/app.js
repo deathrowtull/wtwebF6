@@ -163,14 +163,13 @@ $(document).ready(function () {
                 $('.map iframe').attr('title','Google Map');
                 $('.map area').attr('alt','point');
                 $('.map img').attr('alt','Google Maps');
-                // $('.map span[role|="checkbox"]').removeAttr('role');
-                // $('.map span[role|="checkbox"]').removeAttr('role');
-                // $.each(
-                //     $('.map span[role|="checkbox"]'), function(index, value) {
-                //         console.log('span[role|="checkbox"] found and is being removed to maintain accessability');
-                //         $(this).remove();
-                //     }
-                // ); 
+                $.each( $('.map span[role|="checkbox"]'), function(index, value) {
+                         console.log($(this).html());
+                         $(this).attr('aria-description', 'map-control');
+                         $(this).hide();
+                         console.log($(this).parent().html());
+                     }
+                ); 
             }, 1000);       
         }, 1000);
         

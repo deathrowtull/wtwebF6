@@ -120,7 +120,6 @@ $(document).ready(function () {
 
         $.each(
             $('.youtube'), function(index, value) {                
-                console.log($(this));
                 $(this).css("background","url('https://img.youtube.com/vi/" + $(this).attr("data-embed") + "/sddefault.jpg') no-repeat");
                 $(this).css("background-position","center");
                 $(this).css("background-size","cover");
@@ -292,17 +291,44 @@ $(document).ready(function () {
     //-------------------------------------------------------------------------
     $('.scheduler').each(function( index, value ) {
         $(this).hide();
-        if((((new Date()).getTime())) > parseInt($(this).attr('starttime')) && parseInt($(this).attr('endtime')) > ((new Date().getTime()))){
+        var options = {year: "numeric", month: "short", day: "numeric", hour12: true, hour: "2-digit", minute: "2-digit" };  
+        var starttimeformatted = new Date($(this).attr('starttime') * 1);
+        var endtimeformatted = new Date($(this).attr('endtime') * 1);
+        //console.log(starttimeformatted.toLocaleTimeString([], options));
+        //console.log(endtimeformatted.toLocaleTimeString("en-us", options));
+        if (window.location.href.indexOf("localhost") != -1 || window.location.href.indexOf("cascade") != -1 || window.location.href.indexOf("scheduler=show") != -1){
+            console.log("Running on local or test instance, out of range scheduler events will not be removed but are labeled");
+            
             $(this).show();
-        }
-        if($(this).attr('starttime') == "" && parseInt($(this).attr('endtime')) > ((new Date().getTime()))){
-            $(this).show();
-        }
-        if((((new Date()).getTime())) > parseInt($(this).attr('starttime')) && $(this).attr('endtime') == ""){
-            $(this).show();
-        }
-        if($(this).attr('starttime') == "" && $(this).attr('endtime') == ""){
-            $(this).show();
-        }
+            //$(this).css('opacity','.8');
+            $(this).css('position','relative');
+
+            if(parseInt($(this).attr('starttime')) && parseInt($(this).attr('endtime'))){
+                //$(this).append('<div style="top: 0; position: absolute;background-color: black;padding: 5px .7rem; opacity : .8">will display between<br />' + starttimeformatted + ' - ' + endtimeformatted + '</div>'); 
+                $(this).append('<div style="top: 0; position: absolute;background-color: black;padding: 5px .7rem; opacity : .7">scheduled</div>'); 
+            }
+            if($(this).attr('starttime') == "" && parseInt($(this).attr('endtime'))){
+                $(this).append('<div style="top: 0; position: absolute;background-color: black;padding: 5px .7rem; opacity : .7">scheduled</div>');
+                //$(this).append('<div style="top:0; position: absolute;background-color: black;padding: 5px .5rem; opacity : .8">will display until<br />' + endtimeformatted + '</div>');
+            }
+            if(parseInt($(this).attr('starttime')) && $(this).attr('endtime') == ""){
+                $(this).append('<div style="top: 0; position: absolute;background-color: black;padding: 5px .7rem; opacity : .7">scheduled</div>');
+                //$(this).append('<div style="top:0; position: absolute;background-color: black;padding: 5px .5rem; opacity : .8">will not display until<br />' + starttimeformatted + '</div>');
+            }
+
+        }else{
+            if((((new Date()).getTime())) > parseInt($(this).attr('starttime')) && parseInt($(this).attr('endtime')) > ((new Date().getTime()))){
+                $(this).show();
+            }
+            if($(this).attr('starttime') == "" && parseInt($(this).attr('endtime')) > ((new Date().getTime()))){
+                $(this).show();
+            }
+            if((((new Date()).getTime())) > parseInt($(this).attr('starttime')) && $(this).attr('endtime') == ""){
+                $(this).show();
+            }
+            if($(this).attr('starttime') == "" && $(this).attr('endtime') == ""){
+                $(this).show();
+            }
+        }        
     });      
 });

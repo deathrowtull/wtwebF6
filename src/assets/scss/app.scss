@@ -630,6 +630,16 @@ h3.smaller{font-size: 1.2rem}
 	}
 }
 
+.scheduler{
+	.scheduled{
+		top: 0; 
+		right: 0;
+		position: absolute;
+		padding: 5px .7rem;
+		background-image: url('/assets/img/base/transparent-black-pixel.png');
+	}
+}
+
 .events{	
 	.date{
 		float: left;		

@@ -291,29 +291,41 @@ $(document).ready(function () {
     //-------------------------------------------------------------------------
     $('.scheduler').each(function( index, value ) {
         $(this).hide();
-        var options = {year: "numeric", month: "short", day: "numeric", hour12: true, hour: "2-digit", minute: "2-digit" };  
-        var starttimeformatted = new Date($(this).attr('starttime') * 1);
-        var endtimeformatted = new Date($(this).attr('endtime') * 1);
+        //var options = {year: "numeric", month: "short", day: "numeric", hour12: true, hour: "2-digit", minute: "2-digit" };  
+        //var starttimeformatted = new Date($(this).attr('starttime') * 1);
+        //var endtimeformatted = new Date($(this).attr('endtime') * 1);
         //console.log(starttimeformatted.toLocaleTimeString([], options));
         //console.log(endtimeformatted.toLocaleTimeString("en-us", options));
         if (window.location.href.indexOf("localhost") != -1 || window.location.href.indexOf("cascade") != -1 || window.location.href.indexOf("scheduler=show") != -1){
             console.log("Running on local or test instance, out of range scheduler events will not be removed but are labeled");
             
             $(this).show();
-            //$(this).css('opacity','.8');
+            $(this).css('opacity','.5');
             $(this).css('position','relative');
 
+            //sets the scheduled marker
             if(parseInt($(this).attr('starttime')) && parseInt($(this).attr('endtime'))){
-                //$(this).append('<div style="top: 0; position: absolute;background-color: black;padding: 5px .7rem; opacity : .8">will display between<br />' + starttimeformatted + ' - ' + endtimeformatted + '</div>'); 
-                $(this).append('<div style="top: 0; position: absolute;background-color: black;padding: 5px .7rem; opacity : .7">scheduled</div>'); 
+                $(this).append('<div class="scheduled">scheduled</div>'); 
             }
             if($(this).attr('starttime') == "" && parseInt($(this).attr('endtime'))){
-                $(this).append('<div style="top: 0; position: absolute;background-color: black;padding: 5px .7rem; opacity : .7">scheduled</div>');
-                //$(this).append('<div style="top:0; position: absolute;background-color: black;padding: 5px .5rem; opacity : .8">will display until<br />' + endtimeformatted + '</div>');
+                $(this).append('<div class="scheduled">scheduled</div>'); 
             }
             if(parseInt($(this).attr('starttime')) && $(this).attr('endtime') == ""){
-                $(this).append('<div style="top: 0; position: absolute;background-color: black;padding: 5px .7rem; opacity : .7">scheduled</div>');
-                //$(this).append('<div style="top:0; position: absolute;background-color: black;padding: 5px .5rem; opacity : .8">will not display until<br />' + starttimeformatted + '</div>');
+                $(this).append('<div class="scheduled">scheduled</div>'); 
+            }
+
+            //sets opacity to 100% if the item is currently visible
+            if((((new Date()).getTime())) > parseInt($(this).attr('starttime')) && parseInt($(this).attr('endtime')) > ((new Date().getTime()))){
+                $(this).css('opacity','1');
+            }
+            if($(this).attr('starttime') == "" && parseInt($(this).attr('endtime')) > ((new Date().getTime()))){
+                $(this).css('opacity','1');
+            }
+            if((((new Date()).getTime())) > parseInt($(this).attr('starttime')) && $(this).attr('endtime') == ""){
+                $(this).css('opacity','1');
+            }
+            if($(this).attr('starttime') == "" && $(this).attr('endtime') == ""){
+                $(this).css('opacity','1');
             }
 
         }else{

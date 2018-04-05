@@ -3,10 +3,12 @@ import whatInput from 'what-input';
 
 window.$ = $;
 
-if (window.location.href.indexOf("localhost") != -1 || window.location.href.indexOf("cascade") != -1){
+var localtest = 1;
+if (window.location.href.indexOf("localhost:8000") != -1 || window.location.href.indexOf("cascadetest.wtamu.edu") != -1 || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1){
     console.log("Running on local or test instance, https is not enforced: " + window.location.href);
 }else{
     if (location.protocol !== "https:") location.protocol = "https:";
+    localtest = 0;
 }
 
 import Foundation from 'foundation-sites';
@@ -173,13 +175,15 @@ $(document).ready(function () {
         //news cleanup code ------------    
         var regimg = /src="[A-Za-z0-9 '%()/$._-]*(.png"|.jpg")/g;    
         var regalt = /alt="[A-Za-z0-9 $._-]*"/g;
+        var right = 0;
+        var actualImage = new Array();
+        var img = $('<img>');
 
         setTimeout(function(){
             $.each(
                 $('.news-item'), function(index, value) {
                     //$(value).html('href', $(value).attr('href') + '?url=' + location.href);
                     var str = $(value).find('.description').html();
-                    console.log()
                     var patt = /src=/;
                     if(patt.test(str)){
                         var imgresult = str.match(regimg);
@@ -194,15 +198,14 @@ $(document).ready(function () {
                         alttext = alttext.replace('alt=','');
                         alttext = alttext.replace('"','');
                         alttext = alttext.replace('"','');
-                        alttext = alttext.replace('\'','\\\'');
+                        alttext = alttext.replace('\'','\\\'');    
 
-                        $(value).find('img').css('background','url("//www.wtamu.edu' + imgpath + '")');
-                        // $(value).find('img').css('background-repeat','no-repeat');
-                        // $(value).find('img').css('background-position','center');
-                        // $(value).find('img').css('background-size','contain');
-                        // $(value).find('img').css('background-color','#4f1616');
-                        //$(value).find('img').attr('src','/assets/img/3x2t.png');
+                        $(value).find('img').css('background','url("//www.wtamu.edu' + imgpath + '")');                           
                         $(value).find('img').attr('alt',alttext);
+                    }else{
+                        $(value).find('img').css('background','url("/assets/img/news/' + Math.floor(Math.random() * 11) + '.jpg');
+                        $(value).find('img').attr('alt','transparent background image');
+                        $(value).find('img').attr('aria-hidden','true');
                     }
                 }
             );                   
@@ -296,7 +299,7 @@ $(document).ready(function () {
         //var endtimeformatted = new Date($(this).attr('endtime') * 1);
         //console.log(starttimeformatted.toLocaleTimeString([], options));
         //console.log(endtimeformatted.toLocaleTimeString("en-us", options));
-        if (window.location.href.indexOf("localhost") != -1 || window.location.href.indexOf("cascade") != -1 || window.location.href.indexOf("scheduler=show") != -1){
+        if (localtest || window.location.href.indexOf("scheduler=show") != -1){
             console.log("Running on local or test instance, out of range scheduler events will not be removed but are labeled");
             
             $(this).show();

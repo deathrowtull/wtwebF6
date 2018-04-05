@@ -680,13 +680,18 @@ h3.smaller{font-size: 1.2rem}
 
 .news{
 	.swiper-container{
-		img{
-			background-position: center !important;
+		img{			
 			background-repeat: no-repeat !important;
 			background-size: contain !important;
-			background-color: scale-color($primary-color, $lightness: -10%) !important;
-			background-image: url("../img/base/buffalo.png");
+			background-position: center !important;
+			background-image: url("../img/base/buffalo.png");			
 		}
+		a{			
+			background-color: scale-color($primary-color, $lightness: -10%);
+			&:focus, &:hover, &:active{			
+				background-color: scale-color($primary-color, $lightness: -30%);
+			}
+		}		
 	}
 }
 

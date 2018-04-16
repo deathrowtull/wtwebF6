@@ -802,3 +802,23 @@ a[href$=".xlsx"]::before {
     text-decoration: inherit;
     padding-right: .25rem;
 }
+
+//google
+.gsc-control-cse, .gsc-thumbnail-inside, .gsc-url-top, .gsc-table-result{
+	padding: 0 !important;
+}
+.gsc-result-info{
+	padding-left: 0 !important;
+}
+.gcsc-branding {
+    padding-left: 0;
+    padding-right: 0;
+}
+.gs-web-image-box-portrait img.gs-image {
+    max-width: 90% !important;
+    max-height: 120px !important;
+}
+.gs-image-box.gs-web-image-box.gs-web-image-box-portrait {
+    width: 80px !important;
+    height: auto !important;
+}

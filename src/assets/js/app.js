@@ -203,10 +203,11 @@ $(document).ready(function () {
                         $(value).find('img').css('background','url("//www.wtamu.edu' + imgpath + '")');                           
                         $(value).find('img').attr('alt',alttext);
                     }else{
-                        $(value).find('img').css('background','url("/assets/img/news/' + Math.floor(Math.random() * 11) + '.jpg');
+                        $(value).find('img').css('background','url("./assets/img/news/' + Math.floor(Math.random() * 11) + '.jpg');
                         $(value).find('img').attr('alt','transparent background image');
                         $(value).find('img').attr('aria-hidden','true');
                     }
+                    $(value).find('.description').remove();
                 }
             );                   
         }, 1000);

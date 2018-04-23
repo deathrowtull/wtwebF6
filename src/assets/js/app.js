@@ -5,7 +5,7 @@ window.$ = $;
 
 var localtest = 1;
 if (window.location.href.indexOf("localhost:8000") != -1 || window.location.href.indexOf("cascadetest.wtamu.edu") != -1 || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1 || window.location.href.indexOf("cascadeweb01.wtamu.edu") != -1){
-    console.log("Running on local or test instance, https is not enforced: " + window.location.href);
+    console.log("Running on local or test instance, js logging is turned on, https is not enforced: " + window.location.href);
 }else{
     if (location.protocol !== "https:") location.protocol = "https:";
     localtest = 0;
@@ -30,12 +30,25 @@ $(document).ready(function () {
             b.appendChild(s);
         }(window, document));
 
-        console.log("Lazy class detected:" + $('.lazy').length);
+        if(localtest){console.log("Lazy class detected:" + $('.lazy').length);}        
         //script automatically looks for data-source tags and replaces images there is no need to call the script
         //special option can be placed in the async code above
 
     }else{
-        console.log("No Lazy class detected:" + $('.lazy').length);
+        if(localtest){console.log("No Lazy class detected:" + $('.lazy').length);}
+    }
+
+    if($('.active-nav').length){    
+
+        if($('.active-nav').find('li').length){
+            if(localtest){console.log('active-nav detected : nav elements present' + $('.active-nav').find('li').length)}
+        }else{
+            if(localtest){console.log('active-nav detected : no nav elements, disapearing the nav') + $('.active-nav').find('li').length}
+            $('.active-nav').remove();
+        }
+
+    }else{
+        if(localtest){console.log("active-nav class not detected:" + $('.active-nav').find('li').length);}
     }
 
     //checks to see if there are any swiper-containers and loads the script via cdn------------
@@ -46,9 +59,7 @@ $(document).ready(function () {
             var s = d.createElement("script"); s.async = true;
             s.src = "//cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.6/js/swiper.min.js";
             b.appendChild(s);
-        }(window, document));
-
-        console.log("Swiper class detected : Swiper script Loaded");
+        }(window, document));        
 
         setTimeout(function(){
 
@@ -112,10 +123,10 @@ $(document).ready(function () {
                     }
                 }); 
             });
-            console.log("Swiper Class Init");
+            if(localtest){console.log("Swiper class detected : Swiper script Loaded");}
         }, 800);
     }else{
-        console.log("No swiper class detected:" + $('.swiper-container').length);
+        if(localtest){console.log("No swiper class detected:" + $('.swiper-container').length);}
     }
 
     if($('.youtube').length){
@@ -140,7 +151,7 @@ $(document).ready(function () {
         
         console.log("Youtube class detected : youtube script Loaded");
     }else{
-        console.log("No Youtube class detected:" + $('.youtube').length);
+        //console.log("No Youtube class detected:" + $('.youtube').length);
     }
 
     if($('.map').length){
@@ -155,18 +166,16 @@ $(document).ready(function () {
                 $('.map area').attr('alt','point');
                 $('.map img').attr('alt','Google Maps');
                 $.each( $('.map span[role|="checkbox"]'), function(index, value) {
-                         console.log($(this).html());
                          $(this).attr('aria-description', 'map-control');
                          $(this).hide();
-                         console.log($(this).parent().html());
-                     }
+                    }
                 ); 
             }, 1000);       
         }, 1000);
         
         console.log("Map class detected : Map script Loaded");
     }else{
-        console.log("No Map class detected:" + $('.map').length);
+        if(localtest){console.log("No Map class detected:" + $('.map').length);}
     }  
 
     //temp fix for using the news rss feed and parsing out the first img and its alt text from the article description------
@@ -212,9 +221,9 @@ $(document).ready(function () {
             );                   
         }, 1000);
         
-        console.log("news-item class detected : news items script Loaded");
+        if(localtest){console.log("news-item class detected : news items script Loaded");}
     }else{
-        console.log("news-item class not detected:" + $('.news-item').length);
+        if(localtest){console.log("news-item class not detected:" + $('.news-item').length);}
     }  
 
     //contact form handling 
@@ -226,9 +235,9 @@ $(document).ready(function () {
             $(this).find('.submit').addClass('hide');
             $(this).find('.submit').addClass('hide');
         }); 
-        console.log("contact-form detected : contact-form items script Loaded");
+        if(localtest){console.log("contact-form detected : contact-form items script Loaded");}
     }else{
-        console.log("contact-form not detected:" + $('.contact-form').length);
+        if(localtest){console.log("contact-form not detected:" + $('.contact-form').length);}
     }  
 });
 
@@ -301,7 +310,7 @@ $(document).ready(function () {
         //console.log(starttimeformatted.toLocaleTimeString([], options));
         //console.log(endtimeformatted.toLocaleTimeString("en-us", options));
         if (localtest || window.location.href.indexOf("scheduler=show") != -1){
-            console.log("Running on local or test instance, out of range scheduler events will not be removed but are labeled");
+            if(localtest){console.log("Running on local or test instance, out of range scheduler events will not be removed but are labeled");}
             
             $(this).show();
             $(this).css('opacity','.5');

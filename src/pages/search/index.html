@@ -39,15 +39,16 @@
                             </div>
                         </div>
 	    		    </form>	 		
-		    		<div class="grid-x medium-up-2 large-up-3 grid-margin-x grid-margin-y">                                       
+		    		<div class="grid-x medium-up-2 large-up-3  grid-margin-y">                                       
     					<div class="animation cell grid-x" ng-repeat="person in people" style="padding-left: 0">
     						<div class="small-8 cell">
                                 <h2 class="smaller">{[{person.fname}]} {[{person.lname}]}</h2>
-        						<div class="caption small-12 medium-12 large-6" style="float: left">
+        						<div class="smaller caption small-12 medium-12 large-6" style="float: left">
         							<div ng-hide="!person.title"><strong>Title:</strong> {[{person.title}]}</div>
+                                    <div ng-hide="!person.department"><strong>Department:</strong> {[{person.department}]}</div>
         							<div ng-hide="!person.building"><strong>Location:</strong> {[{person.building}]} {[{person.room}]}</div>
-        							<p class="hide">{[{person.expertise}]}</p>
         							<div ng-hide="!person.phone"><a href="tel:{{person.phone}}">{[{person.phone}]}</a></div>
+                                    <div ng-hide="!person.deptphone"><a href="tel:{{person.deptphone}}">{[{person.deptphone}]} (dept)</a></div>
         							<div ng-hide="!person.email"><a href="mailto:{{person.email}}">{[{person.email}]}</a></div>
         				        </div>
                             </div>                            

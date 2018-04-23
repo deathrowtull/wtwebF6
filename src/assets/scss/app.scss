@@ -514,17 +514,14 @@ h3.smaller{font-size: 1.2rem}
 		    top: -20px;
 		    overflow: hidden;
 		    position: absolute;	
-		    vertical-align: middle;
-		    @include breakpoint(large up){
-		    	margin-left: -124px;	
-		    }
+		    vertical-align: middle;		    
 		    &.large{		    	
 		    	@include breakpoint(large up){
 			    	border-radius: 40px;
 					width: 80px;
 					height: 80px;
 					top: -20px;
-					margin-left: -111px;	
+					margin-left: -80px;	//leave this at 80px this will center in cascade!
 				}
 		    }
 	    	a:focus, a:hover, a:active{

@@ -1,0 +1,52 @@
+<div>
+    <div class="fade grid-x grid-margin-x padding">
+        <div class="centered cell">
+            <h1>Equine Case Search</h1>    
+            
+            <div ng-app="searchApp">
+                <div ng-controller="search">
+                    <form ng-submit="submit()">         
+                        <div class="input-group">
+                            <input type="text" ng-model="search" placeholder="Search" title="Search Box" ng-model-options="{debounce: 1000}"/>
+                            <div class="input-group-button">
+                                <input type="submit" class="button primary" value="Submit">
+                            </div>
+                        </div>
+                    </form>               
+                    
+                    <div class="animation cell grid-x" ng-repeat="data in dataset | filter:search track by $index">
+                        <div class="auto cell">
+                            <a href="{[{data.path}]}">
+                                <h2>{[{data.title}]}</h2>
+                            </a>                             
+                            <span ng-repeat="metadata in data['dynamic-metadata'] track by $index"><strong>{[{metadata.value}]}</strong><br /></span>                        
+                            <h3>{[{data.teaser}]}</h3>
+                            <p>{[{data.summary}]}</p>                     
+                        </div> 
+                    </div>     
+                    <p ng-show="(data|filter:search).length > 0">No Records Match!</p>
+                </div>
+            </div>
+        </div>
+    </div>    
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-animate.js"></script>
+<script type="text/javascript"> 
+
+    //start Angular            
+
+    var App = angular.module('searchApp', ['ngAnimate']).config(function($interpolateProvider){
+        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    });
+
+    App.controller('search', function($scope, $http) {
+        $http.get('http://cascadeweb01.wtamu.edu/responsive-web/academics/pecans/law-cases-for-horsemen/index.json')
+        .then(function(res) {
+            $scope.dataset = [];
+            $scope.dataset = res.data['system-page'];   
+            (window.angular);        
+        });       
+        
+    });    
+            
+</script>

@@ -7,14 +7,14 @@
                 <div ng-controller="search">
                     <form ng-submit="submit()">         
                         <div class="input-group">
-                            <input type="text" ng-model="search" placeholder="Search" title="Search Box" ng-model-options="{debounce: 1000}"/>
+                            <input type="text" ng-model="search" placeholder="Search" title="Search Box" ng-model-options="{debounce: 500}"/>
                             <div class="input-group-button">
                                 <input type="submit" class="button primary" value="Submit">
                             </div>
                         </div>
                     </form>               
                     
-                    <div class="animation cell grid-x" ng-repeat="data in dataset | filter:search track by $index">
+                    <div class="fade cell grid-x" ng-repeat="data in dataset | filter:search track by $index">
                         <div class="auto cell">
                             <a href="{[{data.path}]}">
                                 <h2>{[{data.title}]}</h2>
@@ -29,6 +29,16 @@
             </div>
         </div>
     </div>    
+<style>
+.fade.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+/* The finishing CSS styles for the enter animation */
+.fade.ng-enter.ng-enter-active {
+  opacity:1;
+}
+</style>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-animate.js"></script>
 <script type="text/javascript"> 

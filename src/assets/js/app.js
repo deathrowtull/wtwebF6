@@ -7,7 +7,7 @@ var localtest = 1;
 if (window.location.href.indexOf("localhost:8000") != -1 || window.location.href.indexOf("cascadetest.wtamu.edu") != -1 || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1 || window.location.href.indexOf("cascadeweb01.wtamu.edu") != -1){
     console.log("Running on local or test instance, js logging is turned on, https is not enforced: " + window.location.href);
 }else{
-    if (location.protocol !== "https:") location.protocol = "https:";
+    //if (location.protocol !== "https:") location.protocol = "https:";
     localtest = 0;
 }
 

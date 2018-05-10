@@ -19,7 +19,7 @@
 //@include foundation-badge;
 @include foundation-breadcrumbs;
 //@include foundation-button-group;
-//@include foundation-callout;
+@include foundation-callout;
 @include foundation-card;
 @include foundation-close-button;
 @include foundation-menu;
@@ -42,7 +42,7 @@
 @include foundation-tabs;
 //@include foundation-thumbnail;
 //@include foundation-title-bar;
-//@include foundation-tooltip;
+@include foundation-tooltip;
 @include foundation-top-bar;
 @include foundation-visibility-classes;
 //@include foundation-float-classes;
@@ -818,4 +818,118 @@ a[href$=".xlsx"]::before {
 .gs-image-box.gs-web-image-box.gs-web-image-box-portrait {
     width: 80px !important;
     height: auto !important;
+}
+//code sections examples
+.display .cell{
+    border: 1px solid #555;
+}
+.ss-section:not(:last-child) {
+    padding-bottom: 4rem;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 4rem;
+}
+.ss-code code {
+	display: block;
+	padding: 1rem;
+	overflow-x: scroll;
+	margin-bottom: 1.5rem;
+}
+
+.color-block {
+  	border-radius: 2px;
+  	display: block;
+  	padding: 8px 8px 6px;
+  	color: #333;
+  	text-transform: uppercase;
+  	border: 1px solid #ddd;
+  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    & span {
+	    display: block;
+	    width: 100%;
+	    height: 100px;
+	    margin-bottom: 0.42857rem;
+	}
+}
+//highlight
+.classes.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,.diff .hljs-header {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,.css .rule .hljs-keyword,.hljs-winutils,.nginx .hljs-title,.hljs-subst,.hljs-request,.hljs-status {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,.hljs-hexcolor,.ruby .hljs-constant {
+  color: #008080;
+}
+
+.hljs-string,.hljs-tag .hljs-value,.hljs-doctag,.tex .hljs-formula {
+  color: #d14;
+}
+
+.hljs-title,.hljs-id,.scss .hljs-preprocessor {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-list .hljs-keyword,.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-class .hljs-title,.hljs-type,.vhdl .hljs-literal,.tex .hljs-command {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,.hljs-tag .hljs-title,.hljs-rule .hljs-property,.django .hljs-tag .hljs-keyword {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-attribute,.hljs-variable,.lisp .hljs-body,.hljs-name {
+  color: #008080;
+}
+
+.hljs-regexp {
+  color: #009926;
+}
+
+.hljs-symbol,.ruby .hljs-symbol .hljs-string,.lisp .hljs-keyword,.clojure .hljs-keyword,.scheme .hljs-keyword,.tex .hljs-special,.hljs-prompt {
+  color: #990073;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-preprocessor,.hljs-pragma,.hljs-pi,.hljs-doctype,.hljs-shebang,.hljs-cdata {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.diff .hljs-change {
+  background: #0086b3;
+}
+
+.hljs-chunk {
+  color: #aaa;
 }

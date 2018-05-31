@@ -294,9 +294,28 @@ width:auto;
 height:auto;
 }
 
-.float-left{
-	float: left;
-	margin-right: 1rem
+
+div.thumbnail{
+	&.left{		
+		@include breakpoint(medium up){
+			float: left;
+			margin-right: 1rem;
+			width: 50%
+		}
+		@include breakpoint(large up){
+			width: 33%
+		}
+	}
+	&.right{		
+		@include breakpoint(medium up){
+			float: right;
+			margin-left: 1rem;
+			width: 50%
+		}
+		@include breakpoint(large up){
+			width: 33%
+		}
+	}
 }
 
 .fa > span{
@@ -821,7 +840,8 @@ a[href$=".xlsx"]::before {
 }
 //code sections examples
 .display .cell{
-    border: 1px solid #555;
+    border: 1px solid #999;
+    background-color: #d2d2d2;
 }
 .ss-section:not(:last-child) {
     padding-bottom: 4rem;

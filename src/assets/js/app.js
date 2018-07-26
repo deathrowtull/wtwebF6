@@ -5,7 +5,7 @@ window.$ = $;
 
 var localtest = 1;
 if (window.location.href.indexOf("localhost:8000") != -1 || window.location.href.indexOf("cascadetest.wtamu.edu") != -1 || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1 || window.location.href.indexOf("cascadeweb01.wtamu.edu") != -1){
-    console.log("Running on local or test instance, js logging is turned on, https is not enforced: " + window.location.href);
+    console.warn("Running on local or test instance, js logging is turned on : " + window.location.href);
 }else{
     //if (location.protocol !== "https:") location.protocol = "https:";
     localtest = 0;
@@ -30,25 +30,25 @@ $(document).ready(function () {
             b.appendChild(s);
         }(window, document));
 
-        if(localtest){console.log("Lazy class detected:" + $('.lazy').length);}        
+        if(localtest){console.info("Lazy class detected:" + $('.lazy').length);}        
         //script automatically looks for data-source tags and replaces images there is no need to call the script
         //special option can be placed in the async code above
 
     }else{
-        if(localtest){console.log("No Lazy class detected:" + $('.lazy').length);}
+        if(localtest){console.warn("No Lazy class detected:" + $('.lazy').length);}
     }
 
     if($('.active-nav').length){    
 
         if($('.active-nav').find('li').length){
-            if(localtest){console.log('active-nav detected : nav elements present' + $('.active-nav').find('li').length)}
+            if(localtest){console.info('active-nav detected : nav elements present' + $('.active-nav').find('li').length)}
         }else{
-            if(localtest){console.log('active-nav detected : no nav elements, disapearing the nav') + $('.active-nav').find('li').length}
+            if(localtest){console.warn('No active-nav elements detected : no nav elements, disapearing the nav') + $('.active-nav').find('li').length}
             $('.active-nav').remove();
         }
 
     }else{
-        if(localtest){console.log("active-nav class not detected:" + $('.active-nav').find('li').length);}
+        if(localtest){console.info("active-nav class not detected:" + $('.active-nav').find('li').length);}
     }
 
     //checks to see if there are any swiper-containers and loads the script via cdn------------
@@ -123,10 +123,10 @@ $(document).ready(function () {
                     }
                 }); 
             });
-            if(localtest){console.log("Swiper class detected : Swiper script Loaded");}
+            if(localtest){console.info("Swiper class detected : Swiper script Loaded");}
         }, 800);
     }else{
-        if(localtest){console.log("No swiper class detected:" + $('.swiper-container').length);}
+        if(localtest){console.warn("No swiper class detected:" + $('.swiper-container').length);}
     }
 
     if($('.youtube').length){
@@ -149,7 +149,7 @@ $(document).ready(function () {
             }
         ); 
         
-        console.log("Youtube class detected : youtube script Loaded");
+        console.info("Youtube class detected : youtube script Loaded");
     }else{
         //console.log("No Youtube class detected:" + $('.youtube').length);
     }
@@ -173,9 +173,9 @@ $(document).ready(function () {
             }, 1000);       
         }, 1000);
         
-        console.log("Map class detected : Map script Loaded");
+        console.info("Map class detected : Map script Loaded");
     }else{
-        if(localtest){console.log("No Map class detected:" + $('.map').length);}
+        if(localtest){console.warn("No Map class detected:" + $('.map').length);}
     }  
 
     //temp fix for using the news rss feed and parsing out the first img and its alt text from the article description------
@@ -221,9 +221,9 @@ $(document).ready(function () {
             );                   
         }, 1000);
         
-        if(localtest){console.log("news-item class detected : news items script Loaded");}
+        if(localtest){console.info("news-item class detected : news items script Loaded");}
     }else{
-        if(localtest){console.log("news-item class not detected:" + $('.news-item').length);}
+        if(localtest){console.warn("news-item class not detected:" + $('.news-item').length);}
     }  
 
     //contact form handling 
@@ -235,9 +235,9 @@ $(document).ready(function () {
             $(this).find('.submit').addClass('hide');
             $(this).find('.submit').addClass('hide');
         }); 
-        if(localtest){console.log("contact-form detected : contact-form items script Loaded");}
+        if(localtest){console.info("No contact-form detected : contact-form items script Loaded");}
     }else{
-        if(localtest){console.log("contact-form not detected:" + $('.contact-form').length);}
+        if(localtest){console.warn("contact-form not detected:" + $('.contact-form').length);}
     }  
 });
 
@@ -264,6 +264,56 @@ $(document).ready(function () {
         $('html.firefox').attr('lang','en');
     }, 1500);
 
+    //Delayed accessability Detection Code------------
+    if (localtest || window.location.href.indexOf("dev=true") != -1 || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1){
+
+        (function(w, d){
+            var b = d.getElementsByTagName('body')[0];
+            var s = d.createElement("script"); s.async = true;
+            s.src = "//cdnjs.cloudflare.com/ajax/libs/axe-core/2.1.7/axe.js";
+            b.appendChild(s);
+        }(window, document));          
+    
+        setTimeout(function(){
+            axe.run(function (err, results) {
+                var violations = "";
+                var html = "";
+                if (results.violations.length) {
+                    $.each(
+                        $(results.violations), function(index, value) {
+                            //console.warn(value.description);
+                            violations += value.description + ' : ' + '\n';
+                            $('.warning-system').children('ul').append('<li>' + value.description + '</li>');
+                            $.each(
+                                $(value.nodes), function(index, value) {
+                                    violations += value.html.replace(/\s\s+/i, "").substring(0, 90) + '...\n';   
+                                    html += '<li>' + value.html.replace(/src/i, '').replace(/data-src/i, 'width="150px" src') + '</li>';
+                                    $(value.target[0]).addClass('violation');                                                              
+                                }
+                            );
+                            $('.warning-system').children('ul').append('<ul>' + html + '</ul>');                           
+                        }
+                    ); 
+                    console.warn(violations);
+                    $('.warning-system').show();
+                    $('.warning-system').addClass('violation');
+                    $('.report').attr('href','/report.html?error="' + violations + '" &url="' + location.href + '"');                     
+                }else{
+                    console.info("Passed Axe In Browser Validation Test");
+                    $('.report').attr('href','/report.html?error="Passed Axe In Browser Validation Test" &url="' + location.href + '"');
+                }
+                if (localtest){
+                    $('.report').parent().show();
+                }
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            });
+        }, 2000);
+        if(localtest){console.info("AXE script Loaded");}
+    }else{
+        $('.report').parent().hide();
+        if(localtest){console.warn("AXE script NOT Loaded");}
+    }  
+
     //SHIM for fax numbers, makes the number unclickable, 
     //may be useable in the future as a link
     $('a[href^="fax:"]').click(false);
@@ -282,6 +332,7 @@ $(document).ready(function () {
                 if (!url) {
                   url = window.location.href;
                 }
+                console.log(url);
                 name = name.replace(/[\[\]]/g, "\\$&");
                 var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
                     results = regex.exec(url);
@@ -310,7 +361,7 @@ $(document).ready(function () {
         //console.log(starttimeformatted.toLocaleTimeString([], options));
         //console.log(endtimeformatted.toLocaleTimeString("en-us", options));
         if (localtest || window.location.href.indexOf("scheduler=show") != -1){
-            if(localtest){console.log("Running on local or test instance, out of range scheduler events will not be removed but are labeled");}
+            if(localtest){console.warn("Running on local or test instance, out of range scheduler events will not be removed but are labeled");}
             
             $(this).show();
             $(this).css('opacity','.5');

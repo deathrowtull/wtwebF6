@@ -38,7 +38,7 @@
 @include foundation-sticky;
 //@include foundation-reveal;
 //@include foundation-switch;
-//@include foundation-table;
+@include foundation-table;
 @include foundation-tabs;
 //@include foundation-thumbnail;
 //@include foundation-title-bar;
@@ -295,15 +295,18 @@ height:auto;
 }
 
 
-div.thumbnail{
+div.thumbnail, img{
 	&.left{		
 		@include breakpoint(medium up){
 			float: left;
 			margin-right: 1rem;
-			width: 50%
+			width: 50%;
 		}
 		@include breakpoint(large up){
-			width: 33%
+			width: 33%;
+			&.large{
+				width: 50%;
+			}
 		}
 	}
 	&.right{		
@@ -313,7 +316,20 @@ div.thumbnail{
 			width: 50%
 		}
 		@include breakpoint(large up){
-			width: 33%
+			width: 33%;
+			&.large{
+				width: 50%;
+			}
+		}
+	}
+}
+@include breakpoint(medium up){
+	.grid-x{
+		.cell.left{
+			margin-left: 0rem;
+		}
+		.cell.right{
+			margin-right: 0rem;
 		}
 	}
 }
@@ -349,6 +365,14 @@ div.thumbnail{
 	a{
 		text-decoration: none !important;
 	}
+}
+
+@keyframes blink { 
+   50% { border-color: #ff0000; } 
+}
+.violation{ /*or other element you want*/
+    animation: blink .5s step-end infinite alternate;
+    border: 2px solid #fff;
 }
 
 .card-divider{
@@ -843,6 +867,10 @@ a[href$=".xlsx"]::before {
     border: 1px solid #999;
     background-color: #d2d2d2;
 }
+code{
+	color: #fff;
+  	background: #272822;
+}
 .ss-section:not(:last-child) {
     padding-bottom: 4rem;
     border-bottom: 2px solid #ccc;
@@ -891,15 +919,15 @@ a[href$=".xlsx"]::before {
 }
 
 .hljs-number,.hljs-hexcolor,.ruby .hljs-constant {
-  color: #008080;
+  color: #f9266e;
 }
 
 .hljs-string,.hljs-tag .hljs-value,.hljs-doctag,.tex .hljs-formula {
-  color: #d14;
+  color: #fff381;
 }
 
 .hljs-title,.hljs-id,.scss .hljs-preprocessor {
-  color: #900;
+  color: f9266e;
   font-weight: bold;
 }
 
@@ -913,12 +941,12 @@ a[href$=".xlsx"]::before {
 }
 
 .hljs-tag,.hljs-tag .hljs-title,.hljs-rule .hljs-property,.django .hljs-tag .hljs-keyword {
-  color: #000080;
+  color: #ff5c82;
   font-weight: normal;
 }
 
 .hljs-attribute,.hljs-variable,.lisp .hljs-body,.hljs-name {
-  color: #008080;
+  color: #a1ff38;
 }
 
 .hljs-regexp {

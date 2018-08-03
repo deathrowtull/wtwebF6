@@ -27,6 +27,8 @@ function loadConfig() {
   return yaml.load(ymlFile);
 }
 
+ var access = require('gulp-accessibility');
+
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
  gulp.series(clean, gulp.parallel(pages, sass, javascript, images, fonts, copy), styleGuide));
@@ -34,6 +36,19 @@ gulp.task('build',
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
   gulp.series('build', server, watch));
+
+gulp.task('test', function() {
+  return gulp.src('./dist/**/*.html')
+    .pipe(access({
+      force: true
+    }))
+    .on('error', console.log)
+    .pipe(access.report({reportType: 'txt'}))
+    .pipe(rename({
+      extname: '.txt'
+    }))
+    .pipe(gulp.dest('reports/txt'));
+});
 
 // Delete the "dist" folder
 // This happens every time a build starts

@@ -4,7 +4,7 @@ import whatInput from 'what-input';
 window.$ = $;
 
 var localtest = 1;
-if (window.location.href.indexOf("localhost:8000") != -1 || window.location.href.indexOf("cascadetest.wtamu.edu") != -1 || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1 || window.location.href.indexOf("cascadeweb01.wtamu.edu") != -1){
+if (window.location.href.indexOf("localhost:8000") != -1 || window.location.href.indexOf("dev=true") != -1){
     console.warn("Running on local or test instance, js logging is turned on : " + window.location.href);
 }else{
     //if (location.protocol !== "https:") location.protocol = "https:";
@@ -149,7 +149,7 @@ $(document).ready(function () {
             }
         ); 
         
-        console.info("Youtube class detected : youtube script Loaded");
+        if(localtest){console.info("Youtube class detected : youtube script Loaded");}
     }else{
         //console.log("No Youtube class detected:" + $('.youtube').length);
     }
@@ -265,7 +265,7 @@ $(document).ready(function () {
     }, 1500);
 
     //Delayed accessability Detection Code------------
-    if (localtest || window.location.href.indexOf("dev=true") != -1 || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1){
+    if (localtest || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1){
 
         (function(w, d){
             var b = d.getElementsByTagName('body')[0];
@@ -275,32 +275,42 @@ $(document).ready(function () {
         }(window, document));          
     
         setTimeout(function(){
-            axe.run(function (err, results) {
+
+            var inspect = '#maincontent'
+            if (localtest){
+                inspect = 'html'
+            }
+
+            console.warn('AXE will inspect tag and children of ' + inspect);
+
+            axe.run(inspect, function (err, results) {
                 var violations = "";
                 var html = "";
                 if (results.violations.length) {
-                    $.each(
+                    $('.warning-system .content').append('<h2><span class="fa fa-exclamation"> Please Review The Following Errors</span></h2>');
+                        $.each(                                                 
                         $(results.violations), function(index, value) {
-                            //console.warn(value.description);
                             violations += value.description + ' : ' + '\n';
-                            $('.warning-system').children('ul').append('<li>' + value.description + '</li>');
+                            $('.warning-system .content').append('<h3 class="cell">' + value.description + '</h3>');
+                            html = '';   
                             $.each(
                                 $(value.nodes), function(index, value) {
                                     violations += value.html.replace(/\s\s+/i, "").substring(0, 90) + '...\n';   
-                                    html += '<li>' + value.html.replace(/src/i, '').replace(/data-src/i, 'width="150px" src') + '</li>';
+                                    html += '<div class="cell text-center">' + value.html.replace(/data-src/i, 'width="100%" src') + '</div>';
                                     $(value.target[0]).addClass('violation');                                                              
                                 }
                             );
-                            $('.warning-system').children('ul').append('<ul>' + html + '</ul>');                           
+                            $('.warning-system .content').append('<div class="grid-x small-up-5">' + html + '</div>');                           
                         }
                     ); 
-                    console.warn(violations);
+                    console.log(violations);
                     $('.warning-system').show();
                     $('.warning-system').addClass('violation');
-                    $('.report').attr('href','/report.html?error="' + violations + '" &url="' + location.href + '"');                     
+                    $('.report').attr('href','/report.html?error="' + violations + '" &url="' + location.href + '"');    
+                    $('.report').parent().css('background-color','red');                 
                 }else{
                     console.info("Passed Axe In Browser Validation Test");
-                    $('.report').attr('href','/report.html?error="Passed Axe In Browser Validation Test" &url="' + location.href + '"');
+                    $('.report').attr('href', $('.report').attr('href') + '?error="Passed Axe In Browser Validation Test" &url="' + location.href + '"');
                 }
                 if (localtest){
                     $('.report').parent().show();

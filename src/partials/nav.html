@@ -2,10 +2,18 @@
   <!--<div class="grid-x primary" data-sticky data-margin-top="0" data-options="stickTo:top; stickyOn:small;">-->
   <div class="grid-x primary">
     <div class="centered cell">
-      <div class="top-bar show-for-large-up">
+      <div class="top-bar show-for-large-up" style="position: relative; padding: 0;">
         <div class="top-bar-left">
           <ul class="menu">
-            <li class="show-for-large"><a href="{{root}}" class="wtamu">West Texas A&amp;M University</a></li>
+            <li class="show-for-large" >
+              <!--<a href="{{root}}" style="padding: 0"> 
+                <div style="padding-left: 33px; background-image: url({{root}}assets/img/base/wt-transparent.png); background-repeat: no-repeat; background-size: 33px; background-position-x: 0; background-position-y: -2px">
+                  <span style="font-family: Georgia; font-size: 1.35rem; text-transform: uppercase;">West Texas A&amp;<span style="font-size: 1.2rem;display: none">&amp;</span>M
+                  </span><br />
+                  <span style="font-family: Georgia; font-size: 1rem; letter-spacing: .57rem; margin-left: .3rem;" class="wtamu">University</span>
+                </div>                
+              </a>-->              
+            </li>            
             <li class="hide-for-large">
               <a href="#" data-toggle="offCanvasLeft" aria-label="Menu">
                 <span class="fa fa-navicon"><span class="hide">Menu</span></span>
@@ -14,9 +22,9 @@
           </ul>
         </div> 
         <div class="logo-wrapper">
-          <div class="logo large">
+          <div class="logo">
             <a href="{{root}}">
-              <img alt="West Texas A&amp;M University" src="{{root}}assets/img/base/WT.png"/>
+              <img alt="West Texas A&amp;M University" src="{{root}}assets/img/base/crest-trans.png"/>
             </a>
           </div>
         </div>       
@@ -28,6 +36,16 @@
                   <span class="hide">Report</span>
                 </span>
               </a>
+            </li>
+            <li class="show-for-large">
+              <a href="#" aria-label="Translate" target="_blank">
+                <span aria-hidden="true" class="fa fa-language">
+                  <span class="hide">Translate</span>
+                </span>
+              </a>
+              <ul class="menu vertical">
+                {{> translate}}
+              </ul>
             </li>
             <li class="show-for-large">
               <a href="#">Audience</a>
@@ -69,12 +87,12 @@
   </div> 
   <div class="default grid-x grid-margin-x white show-for-large" style="border-bottom: solid 1px #581818">
     <div class="centered cell">
-      <div class="top-bar">
-        <div class="top-bar-left">
+      <div class="top-bar" style="padding: 0px; font-stretch: condensed; font-size: 1.1rem">
+        <div class="top-bar-left" style="margin-left: 170px">
           <ul class="menu">
             {{> mainnavleft}}
           </ul>
-        </div>        
+        </div>    
         <div class="top-bar-right">
           <ul class="menu">
             {{> mainnavright}}

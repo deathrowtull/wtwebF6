@@ -139,13 +139,19 @@ $(document).ready(function () {
                 $(this).click(function(){
                     $(this).find(".play-button").remove();
                     var iframe = document.createElement( "iframe" );
-                    iframe.setAttribute( "frameborder", "0" );
                     iframe.setAttribute( "allowfullscreen", "" );
+                    iframe.setAttribute( "title", $(this).attr("data-alt") );
                     iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ $(this).attr("data-embed") +"?rel=0&showinfo=0&autoplay=1" );
                     $(this).innerHTML = $(this).attr("data-alt");
                     $(this).append(iframe); 
                     return false;                    
                 });
+                if($(this).attr('data-auto') && (window.outerWidth > 640)){
+                    $(this).find(".play-button").trigger("click").delay('500');                    
+                }
+                if($(this).attr('data-auto')){
+                    $(this).find(".play-button").remove();             
+                }
             }
         ); 
         
@@ -265,7 +271,7 @@ $(document).ready(function () {
     }, 1500);
 
     //Delayed accessability Detection Code------------
-    if (localtest || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1){
+    if (!localtest || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1){
 
         (function(w, d){
             var b = d.getElementsByTagName('body')[0];

@@ -1,5 +1,4 @@
 @charset 'utf-8';
-
 @import 'settings';
 @import 'foundation';
 //@import 'motion-ui';
@@ -115,13 +114,7 @@
 		.border, &.button, & > *{
 			background-color: scale-color($white, $lightness: -20%);
 		   	color: $primary-color;	
-		}
-		.caption{
-			background-color: transparent;
-			&> * {
-				background-color: transparent;
-			}	
-		}			
+		}				
 	}
 	.swiper-pagination-bullet-active {
 	    background: scale-color($primary-color, $lightness: -40%) !important;
@@ -178,13 +171,7 @@
 		.border, &.button, & > *{
 			background-color: scale-color($primary-color, $lightness: -20%);
 		   	color: $white;	
-		}
-		.caption{
-			background-color: transparent;
-			&> * {
-				background-color: transparent;
-			}	
-		}			
+		}				
 	}
 	.swiper-pagination-bullet-active {
 	    background: scale-color($primary-color, $lightness: -40%) !important;
@@ -240,13 +227,7 @@
 		.border, &.button, & > *{
 			background-color: scale-color($secondary-color, $lightness: -20%);
 		   	color: $white;	
-		}
-		.caption{
-			background-color: transparent;
-			&> * {
-				background-color: transparent;
-			}	
-		}			
+		}				
 	}
 	.swiper-pagination-bullet-active {
 	    background: scale-color($secondary-color, $lightness: -40%) !important;
@@ -294,34 +275,49 @@ width:auto;
 height:auto;
 }
 
-
 div.thumbnail, img{
-	&.left{		
-		@include breakpoint(medium up){
-			float: left;
-			margin-right: 1rem;
-			width: 50%;
+	&.left, &.right{
+		@include breakpoint(medium up){		
+			width: 50%;		
 		}
 		@include breakpoint(large up){
+			width: 33%;		
+		}
+		&.small{
 			width: 33%;
-			&.large{
-				width: 50%;
+			@include breakpoint(medium up){			
+				width: 25%
+			}
+			@include breakpoint(large up){
+				width: 20%;			
+			}
+		}
+		&.large{		
+			@include breakpoint(large up){
+				width: 50%;			
 			}
 		}
 	}
-	&.right{		
+	&.left{	
+		&.small{
+			float: left;
+			margin-right: 1rem;		
+		}
+		@include breakpoint(medium up){
+			float: left;
+			margin-right: 1rem;			
+		}		
+	}
+	&.right{
+		&.small{
+			float: right;
+			margin-right: 1rem;		
+		}		
 		@include breakpoint(medium up){
 			float: right;
 			margin-left: 1rem;
-			width: 50%
 		}
-		@include breakpoint(large up){
-			width: 33%;
-			&.large{
-				width: 50%;
-			}
-		}
-	}
+	}	
 }
 @include breakpoint(medium up){
 	.grid-x{
@@ -427,6 +423,7 @@ div.thumbnail, img{
 	    width: 100%;
 	    top: 0;
 	    left: 0;
+	    border: none !important;
 	}
 }
 
@@ -487,6 +484,9 @@ h1.smaller{font-size: 1.4rem}
 h2.smaller{font-size: 1.2rem}
 h3.smaller{font-size: 1.2rem}
 .smaller{font-size: .8rem}
+h1, h2, h3, h4{
+	font-stretch: condensed;	
+}
 
 .relative{
 	position: relative;
@@ -547,32 +547,47 @@ h3.smaller{font-size: 1.2rem}
 		flex: none;
 	}
 	.logo-wrapper {
-	    position: relative; 
 	    margin-left: auto;
 	    margin-right: auto;
 	    .logo {
-	    	height: 40px;
-		    width: 40px;
-		    margin-left: -20px;	
-		    top: -20px;
-		    overflow: hidden;
-		    position: absolute;	
-		    vertical-align: middle;		    
-		    &.large{		    	
-		    	@include breakpoint(large up){
-			    	border-radius: 40px;
-					width: 80px;
-					height: 80px;
-					top: -20px;
-					margin-left: -80px;	//leave this at 80px this will center in cascade!
+	    	width: 60px;	
+	    	margin-left: -28px;
+	    	margin-top: -25px;
+	    	position: absolute;		    
+			a{
+				img{
+					background-image: url('/assets/img/base/crest-mobile.png');
+					background-size: cover;
 				}
-		    }
+			}	    
 	    	a:focus, a:hover, a:active{
-				imgtheresisabuginsafariandchrome{
-					filter: brightness(80%);
+				background-color: transparent;
+				img{
+					background-image: url('/assets/img/base/crest-rollover-mobile.png');
+					background-size: cover;
+					background-color: transparent;
 				}
-			}		    	    
-		}		
+			}
+			@include breakpoint(large up){		    		
+		    	width: 125px;
+				height: 150px;
+				top: 0px;
+				left: 0px;
+				margin-left: 10px;	//leave this at 80px this will center in cascade!
+				margin-top: 0px;
+				a{
+					img{
+						background-image: url('/assets/img/base/crest.png');
+					}
+				}	    
+		    	a:focus, a:hover, a:active{
+					background-color: transparent;
+					img{
+						background-image: url('/assets/img/base/crest-rollover.png');
+					}
+				}				
+			}			    	    
+		}				
 	}
 	.menu{	
 		i.fa{
@@ -592,6 +607,89 @@ h3.smaller{font-size: 1.2rem}
 	    padding-bottom: 20px;
 	    font-weight: bold;
 	    line-height: 1;
+	    @include breakpoint(large up){
+		    font-size: 3rem;
+		}		    
+	}
+	.video{
+		position: relative;
+		.video-container{						
+		}
+		.heading{
+			position: absolute; 
+			top: 0;
+			width: 100%;
+			h1{
+				font-family: Georgia; 
+				margin-left: auto; 
+				margin-right: auto; 
+				font-size: 2rem; 
+				text-shadow: 2px 2px 8px #000;
+				text-align: center;
+				padding: .85rem 1rem;
+			}
+		}
+		.text{
+			div{
+				padding: 1rem;
+				span{
+					font-family: Georgia; 					
+					margin-bottom: 0;	
+					font-size: 1rem	;					
+					font-weight: 100;
+				}
+				span:first-child{
+					text-transform: uppercase; 
+					font-size: 1.2rem; 
+					font-weight: bold;
+				}
+			}
+		}
+		@include breakpoint(medium up){
+	    	.video-container{
+				height: 500px;	
+				overflow: hidden;		
+			}
+			.heading{				
+				h1{					
+					font-size: 2.5rem; 									
+				}	
+			}
+			.text{
+				div{
+					position: absolute; 
+					bottom: 0;	
+					padding-bottom: 2rem;
+					span{	
+						font-size: 1.2rem;	
+					}
+					span:first-child{
+						font-size: 1.8rem; 
+					}			
+				}
+			}
+		}
+		@include breakpoint(large up){
+	    	.video-container{
+				height: 550px;			
+			}
+			.heading{				
+				h1{					
+					font-size: 3.2rem; 									
+				}	
+			}
+			.text{
+				div{
+					bottom: 2rem;
+					span{
+						font-size: 1.5rem; 
+					}
+					span:first-child{
+						font-size: 2.5rem; 
+					}
+				}
+			}
+		}
 	}
 	@include breakpoint(large up){
 		margin-top: 0px;	
@@ -635,6 +733,7 @@ h3.smaller{font-size: 1.2rem}
 	}
 	.swiper-button-disabled{
 	    display: none;
+	    pointer-events: all !important;
 	}
 	&:hover .swiper-button-disabled{
 		display: block;
@@ -683,19 +782,28 @@ h3.smaller{font-size: 1.2rem}
 .events{	
 	.date{
 		float: left;		
-		width: 8rem;
+		width: 4rem;
 		text-align: center;
 		margin-right: 1rem;
+		border-right: thin solid $white;
 		> *
 		{
-			margin-top: .25rem;
-			margin-bottom: .25rem;
+			margin-top: .1rem;
+			margin-bottom: .1rem;
+		}
+		p:first-child{
+			font-stretch: condensed;
+			font-size: 1.5rem;
+			margin-bottom: -7px;
+		}
+		p:nth-child(2){
+			font-size: .9rem;
 		}
 	}
 	.caption{
-		padding-top: 1.3rem;
+		padding-top: .5rem;
 		padding-bottom: 1rem;
-		height: 4.5rem;
+		height: 4.5rem;		
 		p{
 			text-overflow: ellipsis;
 			overflow: hidden;

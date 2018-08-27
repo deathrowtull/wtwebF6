@@ -130,7 +130,7 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: $body-font-family;
+$header-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $header-font-weight: $global-weight-normal;
 $header-font-style: normal;
 $font-family-monospace: Helvetica, 'Liberation Mono', Courier, monospace;
@@ -139,20 +139,20 @@ $header-lineheight: 1.4;
 $header-margin-bottom: 0.5rem;
 $header-styles: (
   small: (
-    'h1': ('font-size': 25),
-    'h2': ('font-size': 22),
-    'h3': ('font-size': 18),
-    'h4': ('font-size': 17),
-    'h5': ('font-size': 16),
-    'h6': ('font-size': 14),
-  ),
-  medium: (
     'h1': ('font-size': 40),
     'h2': ('font-size': 30),
     'h3': ('font-size': 22),
-    'h4': ('font-size': 18),
-    'h5': ('font-size': 17),
+    'h4': ('font-size': 20),
+    'h5': ('font-size': 18),
     'h6': ('font-size': 16),
+  ),
+  medium: (
+    'h1': ('font-size': 50),
+    'h2': ('font-size': 40),
+    'h3': ('font-size': 30),
+    'h4': ('font-size': 22),
+    'h5': ('font-size': 20),
+    'h6': ('font-size': 18),
   ),
 );
 $header-text-rendering: optimizeLegibility;

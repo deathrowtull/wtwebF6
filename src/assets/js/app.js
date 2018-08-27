@@ -247,8 +247,6 @@ $(document).ready(function () {
     }  
 });
 
-
-
 //generic functions that do not need to be lazy loaded-----------------------------
 $(document).ready(function () {
 
@@ -271,7 +269,7 @@ $(document).ready(function () {
     }, 1500);
 
     //Delayed accessability Detection Code------------
-    if (!localtest || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1){
+    if (localtest || window.location.href.indexOf("cascadeserver.wtamu.edu") != -1){
 
         (function(w, d){
             var b = d.getElementsByTagName('body')[0];

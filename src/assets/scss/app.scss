@@ -56,6 +56,12 @@
 
 //color scss--------------------------
 
+.breadcrumbs{
+	@include breakpoint(large up){		
+		padding-left: 140px;		
+	}
+}
+
 .button{		
 	&.border{
 		text-align: center;
@@ -550,20 +556,20 @@ h1, h2, h3, h4{
 	    margin-left: auto;
 	    margin-right: auto;
 	    .logo {
-	    	width: 60px;	
-	    	margin-left: -28px;
+	    	width: 55px;	
+	    	margin-left: -25px;
 	    	margin-top: -25px;
 	    	position: absolute;		    
 			a{
 				img{
-					background-image: url('/assets/img/base/crest-mobile.png');
+					background-image: url('../img/base/crest-mobile.png');
 					background-size: cover;
 				}
 			}	    
 	    	a:focus, a:hover, a:active{
 				background-color: transparent;
 				img{
-					background-image: url('/assets/img/base/crest-rollover-mobile.png');
+					background-image: url('../img/base/crest-rollover-mobile.png');
 					background-size: cover;
 					background-color: transparent;
 				}
@@ -577,13 +583,13 @@ h1, h2, h3, h4{
 				margin-top: 0px;
 				a{
 					img{
-						background-image: url('/assets/img/base/crest.png');
+						background-image: url('../img/base/crest.png');
 					}
 				}	    
 		    	a:focus, a:hover, a:active{
 					background-color: transparent;
 					img{
-						background-image: url('/assets/img/base/crest-rollover.png');
+						background-image: url('../img/base/crest-rollover.png');
 					}
 				}				
 			}			    	    
@@ -782,7 +788,7 @@ h1, h2, h3, h4{
 .events{	
 	.date{
 		float: left;		
-		width: 4rem;
+		width: 3rem;
 		text-align: center;
 		margin-right: 1rem;
 		border-right: thin solid $white;

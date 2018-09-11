@@ -280,9 +280,10 @@ $(document).ready(function () {
     
         setTimeout(function(){
 
-            var inspect = '#maincontent'
+            var inspect = '#maincontent';
             if (localtest){
-                inspect = 'html'
+                //inspect = 'html';
+                inspect = '#maincontent';
             }
 
             console.warn('AXE will inspect tag and children of ' + inspect);

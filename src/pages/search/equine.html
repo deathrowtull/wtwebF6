@@ -1,12 +1,17 @@
-<div>
-    <div class="fade grid-x grid-margin-x padding">
-        <div class="centered cell">
-            <h1>Equine Case Search</h1>    
-            
-            <div ng-app="searchApp">
+<div class="grid-x grid-margin-x" id="app">
+    <div class="centered grid-x grid-margin-x cell">
+        <div class="grid-x large-8 cell">
+            <ul class="breadcrumbs small-12">
+                <li><a href="./">WTAMU</a></li>
+                <li class="unavailable">Search</li>
+                <li class="unavailable">Equine Case Search</li>
+            </ul>
+
+            <h1>Equine Case Search</h1>   
+            <div class="cell" ng-app="searchApp">
                 <div ng-controller="search">
                     <form ng-submit="submit()">         
-                        <div class="input-group">
+                        <div class=" cell input-group">
                             <input type="text" ng-model="search" placeholder="Search" title="Search Box" ng-model-options="{debounce: 500}"/>
                             <div class="input-group-button">
                                 <input type="submit" class="button primary" value="Submit">
@@ -17,10 +22,10 @@
                     <div class="fade cell grid-x" ng-repeat="data in dataset | filter:search track by $index">
                         <div class="auto cell">
                             <a href="{[{data.path}]}">
-                                <h2>{[{data.title}]}</h2>
+                                <h2><small>{[{data.title}]}</small></h2>
                             </a>                             
                             <span ng-repeat="metadata in data['dynamic-metadata'] track by $index"><strong>{[{metadata.value}]}</strong><br /></span>                        
-                            <h3>{[{data.teaser}]}</h3>
+                            <p>{[{data.teaser}]}</p>
                             <p>{[{data.summary}]}</p>                     
                         </div> 
                     </div>     
@@ -28,6 +33,24 @@
                 </div>
             </div>
         </div>
+        <div class="large-4 show-for-large cell">   
+            <div class="secondary">          
+                <ul class="mobile-ofc vertical menu">
+                    <li>
+                        <a href="./index.html">Site Search</a>
+                    </li>
+                    <li>
+                        <a href="./directory.html">Directory Search</a>
+                    </li>
+                    <li>
+                        <a href="./experts.html">Experts Search</a>
+                    </li>  
+                    <li>
+                        <a href="./equine.html">Equine Law</a>
+                    </li>                    
+                </ul>   
+            </div>                 
+        </div> 
     </div>    
 <style>
 .fade.ng-enter {

@@ -1,0 +1,145 @@
+<div class="grid-x grid-margin-x" ng-app="WtDirectory" id="app">
+    <div class="centered grid-x grid-margin-x cell">
+        <div class="grid-x large-8 cell">
+
+            <ul class="breadcrumbs small-12">
+                <li><a href="./">WTAMU</a></li>
+                <li class="unavailable">Search</li>
+                <li class="unavailable">Directory</li>
+            </ul>
+
+            <h1 class="cell">Directory Search</h1>             
+
+            <div class="cell" id="directory" ng-controller="directorySearch">
+                <div class="cell">
+                    <input type="radio" ng-model="type" value="staff" name="staff" id="staff"/><label for="staff" title="Select Faculty/Staff">Faculty Staff</label>
+                    <input type="radio" ng-model="type" value="student" name="student" id="student"/><label for="student" title="Select Students">Students</label>
+                </div>
+                    
+                <form class="cell" id="directory_search" ng-submit="submit()">         
+                    <div class="input-group">
+                        <input type="text" ng-model="search" placeholder="Search" id="Search_Directory" title="Search Box"/>
+                        <div class="input-group-button">
+                            <input type="submit" class="button primary" value="Submit">
+                        </div>
+                    </div>
+                </form>         
+                <div class="grid-x medium-up-2 grid-margin-x grid-margin-y results" style="margin-bottom: 1rem; border: thin solid #d2d2d2; display: none">    
+                    <div class="animation cell grid-x" ng-repeat="person in people">
+                        <div class="small-8 cell">
+                            <h2 class="smaller">{[{person.fname}]} {[{person.lname}]}</h2>
+                            <div class="smaller caption small-12 medium-12 large-6" style="float: left">
+                                <div ng-hide="!person.title"><strong>Title:</strong> {[{person.title}]}</div>
+                                <div ng-hide="!person.department"><strong>Department:</strong> {[{person.department}]}</div>
+                                <div ng-hide="!person.building"><strong>Location:</strong> {[{person.building}]} {[{person.room}]}</div>
+                                <div ng-hide="!person.phone"><a href="tel:{{person.phone}}">{[{person.phone}]}</a></div>
+                                <div ng-hide="!person.deptphone"><a href="tel:{{person.deptphone}}">{[{person.deptphone}]} (dept)</a></div>
+                                <div ng-hide="!person.email"><a href="mailto:{{person.email}}">{[{person.email}]}</a></div>
+                            </div>
+                        </div>                            
+                        <div class="small-4 cell">
+                            <div class="small-8 small-centered primary">
+                                <img ng-hide="!person.imgUrl" src="//apps.wtamu.edu{[{person.imgUrl}]}" alt="professor {[{person.fname}]} {[{person.lname}]}"/>
+                                <img ng-hide="person.imgUrl" src="{{root}}/assets/img/base/buffalo.png" alt="image missing" />
+                            </div>
+                        </div>                        
+                    </div>
+                </div> 
+                <div class="grid-x medium-up-2 grid-margin-x grid-margin-y callout alert apperror" ng-show="people.length < 1" style="display: none">    
+                    <p class="cell smaller">No Records Match!</p>
+                </div>                      
+            </div>
+        </div>
+        <div class="large-4 show-for-large cell">   
+            <div class="secondary">          
+                <ul class="mobile-ofc vertical menu">
+                    <li>
+                        <a href="./index.html">Site Search</a>
+                    </li>
+                    <li>
+                        <a href="./directory.html">Directory Search</a>
+                    </li>
+                    <li>
+                        <a href="./experts.html">Experts Search</a>
+                    </li>  
+                    <li>
+                        <a href="./equine.html">Equine Case Search</a>
+                    </li>                    
+                </ul>   
+            </div>                 
+        </div>  
+    </div>
+    
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-animate.js"></script>
+<script src="{{root}}assets/x2js-master/xml2json.min.js"></script>
+<script type="text/javascript">     
+
+    //start Angular            
+
+    var App = angular.module('WtDirectory', ['ngAnimate']).config(function($interpolateProvider){
+        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    });    
+
+    App.controller('directorySearch', function($scope, $http) {
+
+        $scope.people = [];
+        $scope.list = [];
+        $scope.text = 'hello';
+        $scope.type = 'staff';
+
+        $(document).ready(function () { 
+            if(window.location.href.indexOf("#directory") != -1){                
+                $scope.search = $('#Search_Directory').val();
+            }
+        });
+
+        $scope.submit = function() {
+            
+            if($scope.type == "staff") {                  
+                var data = $.param({
+                    search: $scope.search,
+                    stype: 'fs',
+                    xml_output: 1
+                });
+            }
+                
+            if($scope.type == "student") {                  
+                var data = $.param({
+                    search: $scope.search,
+                    stype: 'stu',
+                    xml_output: 1
+                });                
+            }
+            
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            };
+            
+            $http.post('//apps.wtamu.edu/dir/', data, config)
+            .success(function(data, headers, config){                
+
+                var x2js = new X2JS();
+                var json = x2js.xml_str2json( data );         
+                
+                if(json.directory.status_msg){
+                    $scope.people = [];      
+                    $('.apperror').show();  
+                    $('.results').hide();           
+                }
+                else{    
+                    if(json.directory.results_msg == "1 record matches"){
+                        $scope.people = [json.directory.results.result];
+                    }else{
+                        $scope.people = json.directory.results.result;
+                    }               
+                    $('.apperror').hide(); 
+                    $('.results').show();
+                }
+            });            
+        };                
+    });
+            
+</script>

@@ -131,7 +131,7 @@ $(document).ready(function () {
 
     if($('.youtube').length){
 
-        $.each(
+        $.e.ach(
             $('.youtube'), function(index, value) {                
                 $(this).css("background","url('https://img.youtube.com/vi/" + $(this).attr("data-embed") + "/sddefault.jpg') no-repeat");
                 $(this).css("background-position","center");

@@ -18,7 +18,7 @@
                     
                 <form class="cell" id="directory_search" ng-submit="submit()">         
                     <div class="input-group">
-                        <input type="text" ng-model="search" placeholder="Search" id="Search_Directory" title="Search Box"/>
+                        <input type="text" ng-model="search" placeholder="Search" id="Search_Directory" title="Search"/>
                         <div class="input-group-button">
                             <input type="submit" class="button primary" value="Submit">
                         </div>
@@ -39,13 +39,13 @@
                         </div>                            
                         <div class="small-4 cell">
                             <div class="small-8 small-centered primary">
-                                <img ng-hide="!person.imgUrl" src="//apps.wtamu.edu{[{person.imgUrl}]}" alt="professor {[{person.fname}]} {[{person.lname}]}"/>
-                                <img ng-hide="person.imgUrl" src="{{root}}/assets/img/base/buffalo.png" alt="image missing" />
+                                <img ng-hide="!person.imgUrl" src="//apps.wtamu.edu{[{person.imgUrl}]}" style="width:100%" alt="professor {[{person.fname}]} {[{person.lname}]}"/>
+                                <img ng-hide="person.imgUrl" src="{{root}}/assets/img/base/buffalo.png" style="width:100%" alt="image missing" />
                             </div>
                         </div>                        
                     </div>
                 </div> 
-                <div class="grid-x medium-up-2 grid-margin-x grid-margin-y callout alert apperror" ng-show="people.length < 1" style="display: none">    
+                <div class="grid-x medium-up-2 grid-margin-x grid-margin-y callout alert apperror" ng-show="people.length == 0" style="display: none">    
                     <p class="cell smaller">No Records Match!</p>
                 </div>                      
             </div>

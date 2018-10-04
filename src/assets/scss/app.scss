@@ -788,11 +788,23 @@ h1, h2, h3, h4{
 
 .events{	
 	.date{
-		float: left;		
+		float: left;
 		width: 3rem;
 		text-align: center;
 		margin-right: 1rem;
-		border-right: thin solid $white;
+		border-right: thin solid $white;		
+	}
+	.caption{
+		p:first-child{
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;			
+		}
+		p:nth-child(2){
+			font-style: italic;
+		}		
+	}
+	.date, .caption{		
 		> *
 		{
 			margin-top: .1rem;
@@ -806,16 +818,6 @@ h1, h2, h3, h4{
 		p:nth-child(2){
 			font-size: .9rem;
 		}
-	}
-	.caption{
-		padding-top: .5rem;
-		padding-bottom: 1rem;
-		height: 4.5rem;		
-		p{
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-		}		
 	}
 }
 
@@ -965,6 +967,12 @@ a[href$=".xlsx"]::before {
 .gsc-result-info{
 	padding-left: 0 !important;
 }
+a.gs-title{
+	color: #a62d2d !important;
+	strong{
+		color: #581818 !important;
+	}
+}
 .gcsc-branding {
     padding-left: 0;
     padding-right: 0;
@@ -976,6 +984,9 @@ a[href$=".xlsx"]::before {
 .gs-image-box.gs-web-image-box.gs-web-image-box-portrait {
     width: 80px !important;
     height: auto !important;
+}
+.gs-webResult div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
+    color: $primary-color !important;
 }
 //code sections examples
 .display .cell{
